@@ -1,0 +1,70 @@
+
+.container{
+    position: relative;
+    --button : transparent;
+    --button-text : transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 0px 20px 0;
+    border: 2px solid var(--textSoft);
+    border-top: none;
+    border-bottom: none;
+}
+.container:hover {
+    --button : white;
+    --button-text : var(--textSoft);
+}
+
+
+.imageContainer {
+    width: 250px;
+    background: red;
+    aspect-ratio: 1/1;
+}
+
+.colors {
+    margin: 0 5px;
+    display: flex;
+    justify-content: right;
+    gap: 5px;
+}
+
+.textContainer {
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.brand {
+    font-weight: 600;
+}
+
+.name {
+    font-weight: 400;
+}
+
+.addButton {
+    cursor: pointer;
+    width: 100%;
+    position: absolute;
+    bottom: -25px;
+    border: none;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 10px;
+    background: var(--button);
+    color: var(--button-text);
+    border: 2px solid var(--button-text);
+}
+
+.addButton:hover {
+    background:var(--button-text);
+    color: var(--button);
+}
