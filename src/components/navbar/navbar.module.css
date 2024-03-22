@@ -1,13 +1,22 @@
 .container {
-    background: var(--bg);
-    padding: 20px;
+    height: 82px;
     display: flex;
-    justify-content: space-between;
-    color: var(--text);
+    justify-content:space-around;
+    align-items: center;
+    background-color: gainsboro;
 }
 
-.logo {
-    font-size: 20px;
-    font-weight: 550;
+.logoContainer {
+    width: 145px;
 }
 
+.links {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+}
+
+.icons {
+    display: flex;
+    gap: 24px;
+}

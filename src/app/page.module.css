@@ -3,20 +3,19 @@
   display: flex;
   flex-direction: column;
 }
-
-.title {  
-  font-size: 32px;
-  padding: 10px;
-  color: white;
-  background-color: var(--text);
-  text-align: center;
+.categoryContainer {
+  padding: 80px;    
+  display: flex;
+  justify-content: center;
+  gap: 30px;  
 }
 
-.productContainer {
-  padding: 5px 0px;
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+.topSaleContainer {
+  padding: 80px 165px;    
+}
+
+.title {
+  font-family: TV;
+  font-size: 30px;
+  text-align: center ;
 }

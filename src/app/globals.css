@@ -1,14 +1,39 @@
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family:VaziRR;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 :root {
   --text:#2d0800;
   --textSoft:#58342d;
-  --bg:#d28c7c;
+  --bg:#fefefe;
+  --bgSoft:rgb(93, 91, 91);
+  --brand:crimson
+}
+@font-face {
+  font-family: "TV";
+  src: url(/fonts/Far_TV.ttf);
+  weight: 400
 }
 
+@font-face {
+  font-family: VaziRR;
+  src: url(/fonts/Vazir.ttf);
+  weight: 400
+}
+
+@font-face {
+  font-family: VazirRR;
+  src: url(/fonts/Inter.ttf );
+  weight: 400
+}
 
 

@@ -5,6 +5,10 @@
     --button-text : transparent;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border:  1px solid var(--bgSoft);
+    cursor: pointer;
 }
 
 .content {
@@ -12,17 +16,18 @@
     flex-direction: column;
     gap: 20px;
     padding: 0px 0px 20px 0;
-    border: 2px solid var(--textSoft);
-    border-top: none;
-    border-bottom: none;
 }
 .container:hover {
+    border: 1px solid black;
     --button : white;
     --button-text : var(--textSoft);
 }
 
 
+
+
 .imageContainer {
+    position: relative;
     width: 250px;
     background: red;
     aspect-ratio: 1/1;
@@ -52,16 +57,16 @@
 
 .addButton {
     cursor: pointer;
-    width: 100%;
+    width: calc(100% + 2px);
     position: absolute;
     bottom: -25px;
     border: none;
     font-weight: 600;
     font-size: 18px;
-    padding: 10px;
+    padding: 12px;
     background: var(--button);
     color: var(--button-text);
-    border: 2px solid var(--button-text);
+    border: 1px solid var(--button-text);
 }
 
 .addButton:hover {
