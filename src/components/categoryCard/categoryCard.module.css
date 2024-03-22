@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    
+}
+.imageContainer {
+    position: relative;
+    width: 260px;
+    height: 255px;
+    aspect-ratio: 1/1;
+    margin-bottom: 23px;
+}

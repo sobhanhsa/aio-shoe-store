@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.imageContainer {
+    position: relative;
+    width: 555px;
+    height: 348px;
+}
+
+.textContainer {
+    
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 64px 78px;
+    align-items: center;
+    gap: 24px;
+    max-width: 555px;
+    background-color: #F7F6F5;
+    height: fit-content;
+    max-height: 316px;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.desc {
+    font-size: 16px;
+    max-height: 70px;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.link {
+    font-size: 14px;
+    border-bottom: 1px solid black;
+}
+
