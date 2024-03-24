@@ -4,10 +4,8 @@
   flex-direction: column;
 }
 .categoryContainer {
-  padding: 80px;    
-  display: flex;
-  justify-content: center;
-  gap: 30px;  
+  padding: 80px 205px;    
+  
 }
 
 .topSaleContainer {

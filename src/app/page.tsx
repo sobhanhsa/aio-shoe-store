@@ -7,6 +7,7 @@ import CategoryCard from "@/components/categoryCard/CategoryCard";
 import SaleAd from "@/components/saleAd/SaleAd";
 import AboutUs from "@/components/aboutUs/AboutUs";
 import LatestProducts from "@/components/latestProducts/LatestProducts";
+import CategorySwiper from "@/components/categorySwiper/CategorySwiper";
 
 export default async function Home() {
   // await createShoes();
@@ -16,8 +17,7 @@ export default async function Home() {
       {/* featured */}
       <Featured />
       <div className={styles.categoryContainer}>
-        <CategoryCard category="مردانه" image="/mancategory.png" />
-        <CategoryCard category="زنانه"  image="/womancategory.png" />
+        <CategorySwiper categories={["مردانه","زنانه"]} />
       </div>
       <SaleAd />
       <div className={styles.topSaleContainer}>
