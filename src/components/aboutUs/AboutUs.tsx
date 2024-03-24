@@ -13,16 +13,18 @@ const TextComponent = ({
 }) => {
     return (
         <div className={styles.textContainer}>
-            <p className={styles.title}>
-                {title}
-            </p>
-            <p className={styles.desc}>
-                {desc}
-            </p>
-            <div className={styles.link}>
-                <Link href={href}>
-                    بیشتر بدانید
-                </Link>
+            <div className={styles.content}>
+                <p className={styles.title}>
+                    {title}
+                </p>
+                <p className={styles.desc}>
+                    {desc}
+                </p>
+                <div className={styles.link}>
+                    <Link href={href}>
+                        بیشتر بدانید
+                    </Link>
+                </div>    
             </div>
         </div>
     )
