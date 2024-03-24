@@ -1,0 +1,22 @@
+.container {
+    width: 100%;
+    padding: 80px 165px;
+    display: flex;
+    flex-direction: column; 
+    gap: 48px;
+
+}
+
+.title {
+    text-align: center;
+    font-family: TV;
+    font-size: 30px;
+}
+
+.products {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
