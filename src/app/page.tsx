@@ -5,11 +5,11 @@ import { createShoes, findShoes } from "@/utils/db/shoe/data";
 import Featured from "@/components/featured/Featured";
 import CategoryCard from "@/components/categoryCard/CategoryCard";
 import SaleAd from "@/components/saleAd/SaleAd";
+import AboutUs from "@/components/aboutUs/AboutUs";
 
 export default async function Home() {
   // await createShoes();
-  const shoes = await findShoes();
-  console.log(shoes)
+  let shoes = await findShoes();
   return (
     <div className={styles.container}>
       {/* featured */}
@@ -20,8 +20,27 @@ export default async function Home() {
       </div>
       <SaleAd />
       <div className={styles.topSaleContainer}>
-        <p className={styles.title}>پر فروش ترین ها</p>      
+        <p className={styles.title}>پر فروش ترین ها</p>    
+        <div className={styles.products}>
+          {
+            shoes.map((shoe:ShoeType) => {
+              return (
+                <ProductCard
+                  id={shoe._id}
+                  name={shoe.name}
+                  brand={shoe.brand}
+                  colors={shoe.colors}
+                  image={shoe.images[0].image}
+                  sizes={shoe.sizes}
+                  prices={shoe.prices}
+                  tumbDesc={shoe.desc.substring(0,55)}
+                />
+              )
+            })
+          }
+        </div>
       </div>
+      <AboutUs />
     </div>
   );
 }
