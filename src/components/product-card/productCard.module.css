@@ -1,75 +1,70 @@
 
 .container{
-    position: relative;
-    --button : transparent;
-    --button-text : transparent;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border:  1px solid var(--bgSoft);
+    width: min-content;
     cursor: pointer;
 }
-
-.content {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 0px 0px 20px 0;
-}
-.container:hover {
-    border: 1px solid black;
-    --button : white;
-    --button-text : var(--textSoft);
-}
-
-
-
 
 .imageContainer {
     position: relative;
-    width: 250px;
-    background: red;
-    aspect-ratio: 1/1;
+    width: 255px;
+    height: 321px;
 }
 
-.colors {
-    margin: 0 5px;
-    display: flex;
-    justify-content: right;
-    gap: 5px;
+.image {
+    object-fit:cover;
 }
 
-.textContainer {
-    margin: 0 5px;
+.infoContainer {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-
-.brand {
-    font-weight: 600;
+    gap: 12px;
 }
 
 .name {
-    font-weight: 400;
+    font-size: 14px;
+    font-weight: bold;
 }
+
+.brand {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    align-self: flex-end;
+    padding: 4px 21px;
+    width: max-content;
+}
+
+.sizeContainer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
+.size {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 5px;
+    line-height: 20px;
+    background-color: #969191;
+    color: black;
+}
+
+.price {
+    font-weight: bold;
+}
+
+
 
 .addButton {
+    margin-top: 16px;
     cursor: pointer;
-    width: calc(100% + 2px);
-    position: absolute;
-    bottom: -25px;
-    border: none;
-    font-weight: 600;
-    font-size: 18px;
-    padding: 12px;
-    background: var(--button);
-    color: var(--button-text);
-    border: 1px solid var(--button-text);
-}
-
-.addButton:hover {
-    background:var(--button-text);
-    color: var(--button);
+    font-size: 12px;
+    font-weight: bolder;
+    width: 100%;
+    padding: 15px 68px;
+    background-color: transparent;
+    border: 1px solid #3A3845;
 }
