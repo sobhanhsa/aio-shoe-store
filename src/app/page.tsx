@@ -6,10 +6,11 @@ import Featured from "@/components/featured/Featured";
 import CategoryCard from "@/components/categoryCard/CategoryCard";
 import SaleAd from "@/components/saleAd/SaleAd";
 import AboutUs from "@/components/aboutUs/AboutUs";
+import LatestProducts from "@/components/latestProducts/LatestProducts";
 
 export default async function Home() {
   // await createShoes();
-  let shoes = await findShoes();
+  const shoes = await findShoes();
   return (
     <div className={styles.container}>
       {/* featured */}
@@ -41,6 +42,7 @@ export default async function Home() {
         </div>
       </div>
       <AboutUs />
+      <LatestProducts />
     </div>
   );
 }
