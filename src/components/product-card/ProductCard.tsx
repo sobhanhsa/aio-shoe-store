@@ -1,7 +1,5 @@
 import Image from "next/image"
-import Color from "../color/Color"
 import styles from "./productCard.module.css"
-import { redirect } from "next/navigation";
 import Link from "next/link";
 
 type ProductCardParams = {
@@ -30,8 +28,8 @@ const  ProductCard = (params:ProductCardParams) => {
             lowestPrice+"-"+highestPrice
 
     return (
-        <Link href={"/"+params.id} key={params.id}>
-            <div className={styles.container}>
+        <div className={styles.container}>
+            <Link href={"/"+params.id} key={params.id}>
                 <div className={styles.imageContainer}>
                     <Image 
                         className={styles.image}
@@ -64,11 +62,11 @@ const  ProductCard = (params:ProductCardParams) => {
                         {params.tumbDesc}
                     </p>
                 </div>
-                <button className={styles.addButton}>
-                افزودن به سبد خرید 
-                </button>
-            </div>
-        </Link> 
+            </Link> 
+            <button className={styles.addButton}>
+            افزودن به سبد خرید 
+            </button>
+        </div>
     )
 };
 
