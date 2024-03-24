@@ -1,0 +1,38 @@
+.container {
+    padding: 86px 165px 0;
+    background-color: #3A3845;
+}
+
+.content {
+    
+    color:#E5E5E5;
+}
+
+.textContainer {
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    border-bottom: 1px solid #CAC9CF;
+}
+
+.button {
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 16px 32px;
+    background-color: transparent;
+    border: 1px solid #E5E5E5;
+    color: inherit;
+}
+
+.desc {
+    font-size: 14px;
+}
+
+.termsContainer {
+    padding: 32px 0;
+    text-align: center;
+}
