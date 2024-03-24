@@ -1,7 +1,11 @@
 .container {
+    
+    padding: 0 165px;
+}
+
+.content {
     display: flex;
     justify-content: center;
-    padding: 0 165px;
 }
 
 .imageContainer {
