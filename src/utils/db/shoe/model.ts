@@ -44,27 +44,27 @@ const shoeSchema = new Schema({
         ],
     },
     sizes:{
-        // required:true,
+        required:true,
         type:[
             {
                 size:{
-                    type:{
-                        type:String,
-                        required:true
-                    },
+                    type:Number,
+                    required:true
                 },
                 price:{
-                    type:{
-                        type:String,
-                        required:true
-                    },
-                },
+                    type:Number,
+                    required:true
+                }
             }
-        ],
+        ]
     },
     prices:{
         // required:true,
         type:[Number]
+    },
+    desc:{
+        type:String,
+        required:true
     }
 },
 { timestamps: true }
