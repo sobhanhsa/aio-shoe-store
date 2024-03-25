@@ -32,14 +32,12 @@
     font-weight: bold;
     color: white;
     background-color: black;
-    align-self: flex-end;
     padding: 4px 21px;
     width: max-content;
 }
 
 .sizeContainer {
     display: flex;
-    justify-content: flex-end;
     gap: 6px;
 }
 
