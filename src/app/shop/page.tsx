@@ -3,6 +3,7 @@ import styles from "./shopPage.module.css"
 import { ShoeType } from "@/utils/db/shoe/model";
 import ProductCard from "@/components/product-card/ProductCard";
 import Filter from "@/components/filter/Filter";
+import SortSelect from "@/components/sortSelect/SortSelect";
 
 const  ShopPage = async() => {
     const shoes = await findShoes();
@@ -15,15 +16,7 @@ const  ShopPage = async() => {
                     <Filter />
             </div>
             <div className={styles.main}>
-                <div className={styles.head}>
-                    <p className={styles.title}>
-                        مرتب سازی بر اساس   
-                    </p>
-                    <select className={styles.select} 
-                        name="sort" id="sort">
-                        <option value="name">نام</option>
-                    </select>
-                </div>
+                <SortSelect/>
                 <div className={styles.products}>
                     {
                         shoes.map((shoe:ShoeType) => {

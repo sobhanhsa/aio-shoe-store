@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.select {
+    border: none;
+}

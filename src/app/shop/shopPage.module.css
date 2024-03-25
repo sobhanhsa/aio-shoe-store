@@ -13,20 +13,6 @@
 .filterWrapper {
     flex: 3;
 }
-.head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.head .title {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.select {
-    border: none;
-}
 
 .products {
     width: 100%;
