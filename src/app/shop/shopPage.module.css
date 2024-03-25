@@ -1,1 +1,36 @@
-.container {}
+.container {
+    padding: 80px 165px;
+    direction: rtl;
+    display: flex;
+    gap: 25px;
+}
+
+.main {
+    flex: 7;
+}
+
+
+.filterWrapper {
+    flex: 3;
+}
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.head .title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.select {
+    border: none;
+}
+
+.products {
+    width: 100%;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}

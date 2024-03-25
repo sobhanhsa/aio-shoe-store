@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-size: 14px;
+}
+
+.title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.colors {
+    width: 75%;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.square {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+.active {
+    outline: 3px solid black;
+}
+
+
