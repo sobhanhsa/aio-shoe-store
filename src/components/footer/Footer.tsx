@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Logo from "../logo/Logo";
+import Logo from "@/components/logo/Logo";
 import styles from "./footer.module.css"
 
 export const  Footer = () => {
