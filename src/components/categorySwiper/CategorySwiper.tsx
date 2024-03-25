@@ -18,7 +18,7 @@ const CategorySwiper  = ({
         <div className={styles.container}>
             <Swiper
                 className={styles.swiper}
-                slidesPerView={categories.length > 4 ? 4 : 2}
+                slidesPerView={categories.length > 3 ? 4 : 2}
                 spaceBetween={30}
             >
                 <SwiperSlide>
@@ -49,6 +49,7 @@ const CategorySwiper  = ({
                         </div>
                     </Link>
                 </SwiperSlide>
+                
             </Swiper>
         </div>
     )

@@ -4,11 +4,9 @@
     justify-content: center;
 }
 
-.swiper {
-    /* background-color: rebeccapurple; */
-}
 
 .slide {
+    /* width: min-content; */
     display: flex;
     flex-direction: column;
     align-items: center;
