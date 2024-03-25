@@ -3,7 +3,6 @@ import styles from "./page.module.css";
 import { ShoeType } from "@/utils/db/shoe/model";
 import { createShoes, findShoes } from "@/utils/db/shoe/data";
 import Featured from "@/components/featured/Featured";
-import CategoryCard from "@/components/categoryCard/CategoryCard";
 import SaleAd from "@/components/saleAd/SaleAd";
 import AboutUs from "@/components/aboutUs/AboutUs";
 import LatestProducts from "@/components/latestProducts/LatestProducts";
