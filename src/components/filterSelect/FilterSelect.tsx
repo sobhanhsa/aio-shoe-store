@@ -22,11 +22,19 @@ const  FilterSelect = ({
     const param = params.get(name);
 
     function handleClick (this: string) {
-        if (param === this) {
-            params.delete(name)
-        }else {
-            params.set(name,this);
-        }
+        if (param) {
+            if (param === this) params.delete(name);
+            else if (param.includes(this)) {
+                if (param.indexOf(this) === 0 ) {
+                    let newP = param.replace(`${this}-`,"");
+                    params.set(name,newP);
+                }else {
+                    let newP = param.replace(`-${this}`,"");
+                    params.set(name,newP);
+                }
+            }
+            else params.set(name,param+"-"+this)
+        } else params.set(name,this);
         replace(`${path}?${params}`);
     };
     return (
@@ -44,7 +52,8 @@ const  FilterSelect = ({
                             className={
                                 `${styles.square} 
                                 
-                                ${param === item.value ? styles.squareActive 
+                                ${param?.includes(item.value) 
+                                    ? styles.squareActive 
                                     : ""}`
                             }
                         />   
