@@ -29,7 +29,7 @@ const  ProductCard = (params:ProductCardParams) => {
 
     return (
         <div className={styles.container}>
-            <Link href={"/"+params.id} key={params.id}>
+            <Link href={"/shop/"+params.id} key={params.id}>
                 <div className={styles.imageContainer}>
                     <Image 
                         className={styles.image}
