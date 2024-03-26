@@ -1,6 +1,7 @@
 import Image from "next/image"
 import styles from "./productCard.module.css"
 import Link from "next/link";
+import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
 
 type ProductCardParams = {
     brand:      string
@@ -20,12 +21,11 @@ const  ProductCard = (params:ProductCardParams) => {
     const highestPrice = Math.max(...params.prices
         .map(p => Number(p)));
     
-
     const priceRange = lowestPrice === highestPrice 
         ? 
-            lowestPrice 
+            commaEmbedder(lowestPrice) 
         :
-            lowestPrice+"-"+highestPrice
+            commaEmbedder(lowestPrice)+"-"+commaEmbedder(highestPrice)
 
     return (
         <div className={styles.container}>
@@ -48,7 +48,10 @@ const  ProductCard = (params:ProductCardParams) => {
                     <div className={styles.sizeContainer}>
                         {
                             params.sizes.map(size => (
-                                <div key={size.size} className={styles.size}>
+                                <div 
+                                    key={size.size} 
+                                    className={styles.size}
+                                >
                                     {size.size}
                                 </div>
                             ))
