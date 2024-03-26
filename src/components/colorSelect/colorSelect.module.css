@@ -25,6 +25,7 @@
 
 .active {
     outline: 3px solid black;
+    outline-offset: 2px;
 }
 
 
