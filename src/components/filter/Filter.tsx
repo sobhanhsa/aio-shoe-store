@@ -47,8 +47,8 @@ const  Filter = () => {
                 name="material"
                 title="جنس" 
                 items={[
-                    {title:"چرم",value:"چرم"},
-                    {title:"کتونی",value:"کتونی"}
+                    {title:"چرم",value:"leather"},
+                    {title:"کتونی",value:"ketone"},
                 ]}
             />
         </div>
