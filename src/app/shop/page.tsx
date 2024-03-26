@@ -22,6 +22,7 @@ const  ShopPage = async() => {
                         shoes.map((shoe:ShoeType) => {
                         return (
                             <ProductCard
+                            key={shoe._id}
                             id={shoe._id}
                             name={shoe.name}
                             brand={shoe.brand}
