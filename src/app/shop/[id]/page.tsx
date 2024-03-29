@@ -13,7 +13,7 @@ import ColorSelect from "@/components/productSinglePage/colorSelect/ColorSelect"
 import SizeSelect from "@/components/productSinglePage/sizeSelect/SizeSelect";
 import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
 import { useState } from "react";
-import SingleShoeClient from "./client/Test";
+import SingleShoeClient from "./client/Client";
 
 const  SingleShoePage = async({params}:{
     params:{
