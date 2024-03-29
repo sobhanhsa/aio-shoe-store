@@ -4,6 +4,10 @@ const nextConfig = {images:{
         {
             protocol:"https",
             hostname:"dkstatics-public.digikala.com"
+        },
+        {
+            protocol:"https",
+            hostname:"swiperjs.com"
         }
     ]
 }};
