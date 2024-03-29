@@ -1,0 +1,9 @@
+.container {
+    padding: 80px 0;
+    direction: rtl;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+}
