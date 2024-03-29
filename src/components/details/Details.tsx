@@ -6,49 +6,93 @@ import { useState } from "react";
 
 interface detailsProps {
     desc:string
-    dimenstions:string,
+    dimenstions:{
+        x:number,
+        y:number,
+        z:number
+
+    },
     reviews:null
 }
 
 const  Details = (props:detailsProps) => {
-    const [descOpen,setdescOpen] = useState(true);
-    const [dimenstionsOpen,setDimenstionsOpen] = useState(true);
-    const [reviewsOpen,setReviewsOpen] = useState(true);
+    const [descOpen,setdescOpen] = useState(false);
+    const [dimenstionsOpen,setDimenstionsOpen] = useState(false);
+    const [reviewsOpen,setReviewsOpen] = useState(false);
     return (
         <div className={styles.container}>
             <div className={styles.desc}>
-                <p className={styles.title}>
-                    توضیحات
-                </p>
-                <button className={styles.button}
-                    onClick={() =>setdescOpen(p => !p)}
+                <div className={styles.top}>
+                    <p className={styles.title}>
+                        توضیحات
+                    </p>
+                    <button className={styles.button}
+                        onClick={() =>setdescOpen(p => !p)}
                     >
-                    <MdOutlineAdd size={20}/>
-                </button>
+                        {
+                            !descOpen 
+                            ? <MdOutlineAdd size={20}/>
+                            : <MdOutlineAdd 
+                                style={{
+                                    rotate: "45deg",
+                                }}
+                                size={20}/>
+                        }
+                    </button>
+                </div>
+                {descOpen && <div className={styles.hiddenDescs}>
+                    {props.desc}
+                </div>}
             </div>
             <div className={styles.dimenstions}>
-                <p className={styles.title}>
-                    ابعاد
-                </p>
-                
-                <button className={styles.button}
-                    onClick={() =>setDimenstionsOpen(p => !p)}
+                <div className={styles.top}>
+                    <p className={styles.title}>
+                        ابعاد
+                    </p>
+                    <button className={styles.button}
+                        onClick={() =>setDimenstionsOpen(p => !p)}
                     >
-                    <MdOutlineAdd size={20}/>
-                </button>
-                
+                        {
+                            !dimenstionsOpen 
+                            ? <MdOutlineAdd size={20}/>
+                            : <MdOutlineAdd 
+                                style={{
+                                    rotate: "45deg",
+                                }}
+                                size={20}/>
+                        }
+                    </button>
+                </div>
+                {dimenstionsOpen && <div className={styles.hiddenDescs}>
+                    {props.dimenstions.x}
+                    در
+                    {props.dimenstions.y}
+                    در
+                    {props.dimenstions.z}
+                </div>}
             </div>
             <div className={styles.reviews}>
-                <p className={styles.title}>
-                    دیدگاه ها
-                </p>
-
-                <button className={styles.button}
-                    onClick={() =>setReviewsOpen(p => !p)}
-                >
-                    <MdOutlineAdd size={20}/>
-                </button>
-                
+                <div className={styles.top}>
+                    <p className={styles.title}>
+                        نظرات
+                    </p>
+                    <button className={styles.button}
+                        onClick={() =>setReviewsOpen(p => !p)}
+                    >
+                        {
+                            !reviewsOpen 
+                            ? <MdOutlineAdd size={20}/>
+                            : <MdOutlineAdd 
+                                style={{
+                                    rotate: "45deg",
+                                }}
+                                size={20}/>
+                        }
+                    </button>
+                </div>
+                {reviewsOpen && <div className={styles.hiddenDescs}>
+                    coming soon!
+                </div>}
             </div>
         </div>
     )
