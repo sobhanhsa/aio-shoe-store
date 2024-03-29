@@ -22,6 +22,11 @@
     height: 36px;
 }
 
+.sizeSelected {
+    outline: 1px solid black;
+    outline-offset: 6px;
+}
+
 .size:hover {
     outline: 1px solid black;
     outline-offset: 6px;

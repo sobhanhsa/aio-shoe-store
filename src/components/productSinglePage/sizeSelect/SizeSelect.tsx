@@ -20,7 +20,9 @@ const SizeSelect  = ({
                         return (
                             <div 
                                 key={s.size}
-                                className={styles.size}
+                                className={`${styles.size}
+                                    ${selectedSize === s.size && styles.sizeSelected}
+                                `}
                             >
                                 {s.size}
                             </div>
