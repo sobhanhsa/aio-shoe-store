@@ -1,1 +1,123 @@
-.container {}
+.container {
+    direction: rtl;
+    padding: 80px 165px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.top {
+    padding: 14px 0;
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #3A3845;
+}
+
+.top > .trashCan {
+    text-align: center;
+    padding: 0 15px;
+    flex: 1;
+}
+
+.top > .photo {
+    text-align: center;
+    /* padding: 0 41.5px; */
+    flex: 2;
+}
+
+.top > .product {
+    text-align: center;
+    /* padding: 0 173.5px; */
+    flex: 8;
+}
+
+.top > .price {
+    text-align: center;
+    /* padding: 0 69.5px; */
+    flex: 3;
+}
+
+.top > .quantity {
+    /* padding: 0 47px; */
+    text-align: center;
+    flex: 2;
+}
+
+.top > .subTotal {
+    text-align: center;
+    /* padding: 0 49px; */
+    flex: 3;
+}
+
+.cartsContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart {
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+.cart > .delete {
+    text-align: center;
+    padding: 0 15px;
+    flex: 1;
+}
+
+.cart > .imageContainer {
+    text-align: center;
+    /* padding: 0 41.5px; */
+    flex: 2;
+    width: 120px;
+    height: 140px;
+    position: relative;
+}
+
+.cart > .product {
+    text-align: center;
+    /* padding: 0 173.5px; */
+    flex: 8;
+}
+
+.cart > .price {
+    text-align: center;
+    
+    /* padding: 0 69.5px; */
+    flex: 3;
+}
+
+.cart > .quantity {
+    padding: 24px 12px;
+    flex: 3;
+    font-weight: bold;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 48px;
+    max-width: 130px;
+}
+
+.cart > .quantity > button {
+    background: none;
+    padding: 0 10px;
+}
+
+.cart > .subTotal {
+    text-align: center;
+    /* padding: 0 49px; */
+    color: #C69B7B;
+    flex: 3;
+}
