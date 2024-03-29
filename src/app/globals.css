@@ -11,6 +11,11 @@ a {
   color: inherit;
 }
 
+button {
+  border: none;
+  
+}
+
 :root {
   --text:#2d0800;
   --textSoft:#58342d;
