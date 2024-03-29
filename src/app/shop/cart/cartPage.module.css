@@ -111,6 +111,7 @@
 }
 
 .cart > .quantity > button {
+    cursor: pointer;
     background: none;
     padding: 0 10px;
 }

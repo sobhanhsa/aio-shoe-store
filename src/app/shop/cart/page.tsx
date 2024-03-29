@@ -38,7 +38,7 @@ const  CartPage = () => {
             <div className={styles.cartsContainer}>
                 <div className={styles.cart}>
                     <div className={styles.delete}>
-                        <AiOutlineClose size={20} color="red"/>
+                        <AiOutlineClose style={{cursor:"pointer"}} size={20} color="red"/>
                     </div>
                     <div className={styles.imageContainer}>
                         <Image
