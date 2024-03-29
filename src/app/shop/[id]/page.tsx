@@ -13,6 +13,7 @@ import ColorSelect from "@/components/productSinglePage/colorSelect/ColorSelect"
 import SizeSelect from "@/components/productSinglePage/sizeSelect/SizeSelect";
 import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
 import { useState } from "react";
+import SingleShoeClient from "./client/Test";
 
 const  SingleShoePage = async({params}:{
     params:{
@@ -23,7 +24,7 @@ const  SingleShoePage = async({params}:{
     const selectedColor = "ابی";
     const selectedSize = 42;
     const currentQuantity = 1;
-    const currentPrice = 500000
+    const currentPrice = 500000;
     return (
         <div className={styles.container}>
             <div className={styles.product}>
@@ -31,7 +32,8 @@ const  SingleShoePage = async({params}:{
                     <ProductImageSwiper 
                         images={shoe.images.map(i => i.image)}/>
                 </div>
-                <div className={styles.infoContainer}>
+                <SingleShoeClient shoe={JSON.stringify(shoe)}/>
+                {/* <div className={styles.infoContainer}>
                     <div className={styles.status}>
                         <p className={styles.title}>
                             {shoe.name}
@@ -85,7 +87,7 @@ const  SingleShoePage = async({params}:{
                         }}
                         reviews={null}
                     />
-                </div>
+                </div> */}
             </div>
             <div className={styles.similarItems}>
                 <SimilarItems/>

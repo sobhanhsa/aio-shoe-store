@@ -13,7 +13,7 @@ import { AiOutlineMinus } from "react-icons/ai";
 import { MdOutlineAdd } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
 
-const Test  = ({shoe:stringedShoe}:{shoe:string}) => {
+const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
     console.log(stringedShoe);
     const shoe : ShoeType = JSON.parse(stringedShoe);
     const prices = (shoe.prices.map(p => p.price))
@@ -81,4 +81,4 @@ const Test  = ({shoe:stringedShoe}:{shoe:string}) => {
     )
 };
 
-export default Test;
+export default SingleShoeClient;
