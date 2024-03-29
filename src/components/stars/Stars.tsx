@@ -7,14 +7,14 @@ const Stars  = ({count,activeStars}
     return (
         <div style={{display:"flex"}}>
             {
-                (new Array(activeStars).fill("")).map(a => (
-                    <AiFillStar size={12} color="#C69B7B" />
+                (Array.from(Array(activeStars).keys())).map(a => (
+                    <AiFillStar key={a} size={12} color="#C69B7B" />
                 ))
             }
             {
-                (new Array(count - activeStars).fill(""))
+                (Array.from(Array(count - activeStars).keys()))
                 .map(a => (
-                    <AiOutlineStar size={12} color="#C69B7B" />
+                    <AiOutlineStar key={a} size={12} color="#C69B7B" />
                 ))
             }
         </div>
