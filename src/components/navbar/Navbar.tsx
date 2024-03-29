@@ -32,7 +32,9 @@ const  Navbar = () => {
                 <CiSearch size={20} />
                 <PiUserCircleThin size={20} />
                 <CiHeart size={20} />
-                <CiShoppingCart size={20} />
+                <Link href={"/shop/cart"}>
+                    <CiShoppingCart size={20} />
+                </Link>
             </div>
         </div>
     )
