@@ -9,10 +9,6 @@ import { MdOutlineAdd } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa6";
 import Details from "@/components/details/Details";
 import SimilarItems from "@/components/similarItems/SimilarItems";
-import ColorSelect from "@/components/productSinglePage/colorSelect/ColorSelect";
-import SizeSelect from "@/components/productSinglePage/sizeSelect/SizeSelect";
-import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
-import { useState } from "react";
 import SingleShoeClient from "./client/Client";
 
 const  SingleShoePage = async({params}:{
@@ -21,10 +17,6 @@ const  SingleShoePage = async({params}:{
     }
 }) => {
     const shoe : ShoeType = await findShoe(params.id);
-    const selectedColor = "ابی";
-    const selectedSize = 42;
-    const currentQuantity = 1;
-    const currentPrice = 500000;
     return (
         <div className={styles.container}>
             <div className={styles.product}>
