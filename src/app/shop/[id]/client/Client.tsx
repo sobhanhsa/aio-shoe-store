@@ -8,13 +8,12 @@ import styles from "../singleShoe.module.css"
 import { ShoeType } from "@/utils/db/shoe/model";
 import Stars from "@/components/stars/Stars";
 import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineMinus } from "react-icons/ai";
 import { MdOutlineAdd } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
 
 const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
-    console.log(stringedShoe);
     const shoe : ShoeType = JSON.parse(stringedShoe);
     const prices = (shoe.prices.map(p => p.price))
         .toSorted((a,b) => a - b);
@@ -22,6 +21,43 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
     const [selectedColor,setSelectedColor] = useState(shoe.colors[0].color.name);
     const [selectedSize,setSelectedSize] = useState(shoe.sizes[0].size);
     const [currentQuantity,setCurrentQuantity] = useState(1);
+
+    const [colors,setColors] = useState(shoe.colors);
+
+    useEffect(() => {
+        const price = shoe.prices.find(
+            p => {
+                return(
+                    p.sizes.find(s => s.size === selectedSize)
+                )
+            }
+        );
+        price && setColors(shoe.colors.filter(color=>{
+            return price.colors.find(priceC => priceC.colorName === color.color.name)
+        }) as any)
+    },[selectedSize])
+
+    useEffect(() => {
+        setSelectedColor(prevC => {
+            return colors.find(c => c.color.name === prevC) ? prevC : colors[0].color.name
+        })
+    },[colors])
+
+    useEffect(() => {
+        const price = shoe.prices.find(
+            p => {
+                // console.log(p);
+                return(
+                    p.colors.find(c => c.colorName === selectedColor) 
+                    && 
+                    p.sizes.find(s => s.size === selectedSize)
+                )
+        }
+        );
+        // console.log(price)
+        price?.price && setCurrentPrice(price.price);
+    },[selectedSize,selectedColor])
+
     return (
         <div className={styles.infoContainer}>
             <div className={styles.status}>
@@ -41,7 +77,7 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
                 </p>
             </div>
             <ColorSelect
-                colors={shoe.colors}
+                colors={colors}
                 selectedColor={selectedColor}
                 setSelectedColor={setSelectedColor}
                 />
