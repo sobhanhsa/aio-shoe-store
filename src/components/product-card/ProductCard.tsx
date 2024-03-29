@@ -8,7 +8,7 @@ type ProductCardParams = {
     name:       string
     image:      string
     prices:      number[]
-    colors:     {color:string,price:number}[]
+    colors:     {color:{name:string,color:string},price:number}[]
     sizes:      {size:number,price:number}[]
     tumbDesc:string
 } & {
