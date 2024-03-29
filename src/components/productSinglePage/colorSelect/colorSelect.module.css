@@ -18,6 +18,11 @@
     height: 36px;
 }
 
+.colorSelected {
+    outline: 1px solid black;
+    outline-offset: 6px;
+}
+
 .color:hover {
     outline: 1px solid black;
     outline-offset: 6px;

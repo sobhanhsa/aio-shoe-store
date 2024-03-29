@@ -20,7 +20,9 @@ const ColorSelect  = ({
                         return (
                             <div 
                                 key={c.color.color}
-                                className={styles.color}
+                                className={`${styles.color} 
+                                    ${c.color.name === selectedColor ? styles.colorSelected : ""}`
+                                }
                                 style={{backgroundColor:c.color.color}}
                             ></div>
                         )
