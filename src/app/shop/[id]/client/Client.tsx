@@ -43,6 +43,7 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
             <ColorSelect
                 colors={shoe.colors}
                 selectedColor={selectedColor}
+                setSelectedColor={setSelectedColor}
             />
             <SizeSelect
                 sizes={shoe.sizes}

@@ -2,10 +2,12 @@ import styles from "./colorSelect.module.css";
 
 const ColorSelect  = ({
     selectedColor,
-    colors
+    colors,
+    setSelectedColor
 }:{
     selectedColor : string,
-    colors: Array<{color:{color:string,name:string}}>
+    colors: Array<{color:{color:string,name:string}}>,
+    setSelectedColor : (c:string)=>void
 }) => {
     return (
         <div className={styles.container}>
@@ -24,6 +26,7 @@ const ColorSelect  = ({
                                     ${c.color.name === selectedColor ? styles.colorSelected : ""}`
                                 }
                                 style={{backgroundColor:c.color.color}}
+                                onClick={() => setSelectedColor(c.color.name)}
                             ></div>
                         )
                     })
