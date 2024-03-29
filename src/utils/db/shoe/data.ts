@@ -40,14 +40,33 @@ export const createShoes = async () => {
                 کفش روزمره مردانه مدل 
             `,
             images:[
-                    {
+                {
                     color:"red",
                     image:"https://dkstatics-public.digikala.com/digikala-products/03065c4e5f63ab8b23e73d735ddc4369c0560abf_1691074420.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/format,webp/quality,q_90",
-                }
+                },
+                {
+                    color:"red",
+                    image:"https://dkstatics-public.digikala.com/digikala-products/2202aa0bab0cd986be70af426b7b1f495b118df9_1691074062.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
+                },
+                {
+                    color:"red",
+                    image:"https://dkstatics-public.digikala.com/digikala-products/930189c15ad7246d21930ea94c52a1b481a4b499_1691074075.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
+                },
+                {
+                    color:"red",
+                    image:"https://dkstatics-public.digikala.com/digikala-products/9200acc17eeba8e256448a6dbaf9b91bd5bab46f_1691074088.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
+                },
+                {
+                    color:"red",
+                    image:"https://dkstatics-public.digikala.com/digikala-products/ae1f698b43968da325e9336a4f4080f9474f3eb4_1691074101.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
+                },
             ],
             colors:[
                 {
-                    color:"red",
+                    color:{
+                        color:"red",
+                        name:"red"
+                    },
                     price:500000
                 }
             ],
