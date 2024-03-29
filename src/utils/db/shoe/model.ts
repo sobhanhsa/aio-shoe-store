@@ -45,10 +45,6 @@ const shoeSchema = new Schema({
                     },
                     required:true
                 },
-                price:{
-                    type:Number,
-                    required:true
-                },
             }
         ],
     },
@@ -59,21 +55,69 @@ const shoeSchema = new Schema({
                 size:{
                     type:Number,
                     required:true
-                },
-                price:{
-                    type:Number,
-                    required:true
                 }
             }
         ]
     },
     prices:{
-        // required:true,
-        type:[Number]
+        required:true,
+        type:[{
+            price:{
+                type:Number,
+                required:true
+            },
+            colors:{
+                required:true,
+                type:[
+                    {
+                        colorName:{
+                            required:true,
+                            type:String
+                        }
+                    }
+                ]
+            },
+            sizes:{
+                required:true,
+                type:[
+                    {
+                        size:{
+                            required:true,
+                            type:Number
+                        }
+                    }
+                ]
+            }
+        }]
+    },
+    thumbDesc:{
+        type:String,
+        required:true
     },
     desc:{
         type:String,
         required:true
+    },
+    metarial:{
+        required:true,
+        type:String
+    },
+    dimenstions:{
+        required:true,
+        type:{
+            x:{
+                type:Number,
+                required:true
+            },
+            y:{
+                type:Number,
+                required:true
+            },
+            z:{
+                type:Number,
+                required:true
+            }
+        }
     }
 },
 { timestamps: true }
