@@ -24,6 +24,12 @@
     align-items: center;
 }
 
+.price {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: normal;
+}
+
 .title {
     width: 100%;
     text-align: center;
@@ -45,30 +51,6 @@
 
 .stock span {
     color: #C69B7B;
-}
-
-.colorsContainer {
-    font-size: 16px;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;    
-    gap: 16px;
-}
-
-.colors {
-    display: flex;
-    gap: 26px;
-}
-.color {
-    cursor: pointer;
-    width: 36px;
-    height: 36px;
-}
-
-.color:hover {
-    outline: 1px solid black;
-    outline-offset: 6px;
 }
 
 .actions {

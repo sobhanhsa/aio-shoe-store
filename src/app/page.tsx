@@ -9,7 +9,7 @@ import LatestProducts from "@/components/latestProducts/LatestProducts";
 import CategorySwiper from "@/components/categorySwiper/CategorySwiper";
 
 export default async function Home() {
-  // await createShoes();
+  await createShoes();
   const shoes = await findShoes();
   return (
     <div className={styles.container}>
@@ -32,8 +32,8 @@ export default async function Home() {
                   colors={shoe.colors}
                   image={shoe.images[0].image}
                   sizes={shoe.sizes}
-                  prices={shoe.prices}
-                  tumbDesc={shoe.desc.substring(0,55)}
+                  prices={shoe.prices.map(p => p.price)}
+                  tumbDesc={shoe.thumbDesc.substring(0,55)}
                 />
               )
             })

@@ -8,15 +8,22 @@ import { AiOutlineMinus } from "react-icons/ai";
 import { MdOutlineAdd } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa6";
 import Details from "@/components/details/Details";
+import SimilarItems from "@/components/similarItems/SimilarItems";
+import ColorSelect from "@/components/productSinglePage/colorSelect/ColorSelect";
+import SizeSelect from "@/components/productSinglePage/sizeSelect/SizeSelect";
+import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
+import { useState } from "react";
 
-const  SingleShoe = async({params}:{
+const  SingleShoePage = async({params}:{
     params:{
         id:string
     }
 }) => {
     const shoe : ShoeType = await findShoe(params.id);
     const selectedColor = "ابی";
+    const selectedSize = 42;
     const currentQuantity = 1;
+    const currentPrice = 500000
     return (
         <div className={styles.container}>
             <div className={styles.product}>
@@ -37,27 +44,18 @@ const  SingleShoe = async({params}:{
                             موجودی:
                             <span>موجود درانبار</span>
                         </p>
-                    </div>
-                    <div className={styles.colorsContainer}>
-                        <p>رنگ:
-                            <span style={{
-                                color:"#826F66"
-                            }}>{selectedColor}</span>
+                        <p className={styles.price}>
+                            {commaEmbedder(currentPrice)}
                         </p>
-                        <div className={styles.colors}>
-                            {
-                                shoe.colors.map((c) => {
-                                    return (
-                                        <div 
-                                            key={c.color.color}
-                                            className={styles.color}
-                                            style={{backgroundColor:c.color.color}}
-                                        ></div>
-                                    )
-                                })
-                            }
-                        </div>
                     </div>
+                    <ColorSelect
+                        colors={shoe.colors}
+                        selectedColor={selectedColor}
+                    />
+                    <SizeSelect
+                        sizes={shoe.sizes}
+                        selectedSize={selectedSize}
+                    />
                     <div className={styles.actions}>
                         <div className={styles.quantity}>
                             <button>
@@ -79,17 +77,21 @@ const  SingleShoe = async({params}:{
                         </div>
                     </div>
                     <Details 
-                        desc={""}
-                        dimenstions={""}
+                        desc={shoe.desc}
+                        dimenstions={{
+                            x:50,
+                            y:60,
+                            z:10
+                        }}
                         reviews={null}
                     />
                 </div>
             </div>
             <div className={styles.similarItems}>
-
+                <SimilarItems/>
             </div>
         </div>
     )
 };
 
-export default SingleShoe;
+export default SingleShoePage;
