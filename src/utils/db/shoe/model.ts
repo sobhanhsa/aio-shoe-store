@@ -33,7 +33,16 @@ const shoeSchema = new Schema({
         type:[
             {
                 color:{
-                    type:String,
+                    type:{
+                        color:{
+                            type:String,
+                            required:true
+                        },
+                        name:{
+                            type:String,
+                            required:true
+                        }
+                    },
                     required:true
                 },
                 price:{
