@@ -50,11 +50,13 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
             />
             <div className={styles.actions}>
                 <div className={styles.quantity}>
-                    <button>
+                    <button onClick={() => {setCurrentQuantity((p) => {
+                        return p === 1 ? 1 : p - 1
+                    })}}>
                         <AiOutlineMinus size={20} />
                     </button>
                     {currentQuantity}
-                    <button>
+                    <button onClick={() => setCurrentQuantity(p => p + 1)}>
                         <MdOutlineAdd size={20}/>
                     </button>
                 </div>
@@ -70,11 +72,7 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
             </div>
             <Details 
                 desc={shoe.desc}
-                dimenstions={{
-                    x:50,
-                    y:60,
-                    z:10
-                }}
+                dimenstions={shoe.dimenstions}
                 reviews={null}
             />
         </div>
