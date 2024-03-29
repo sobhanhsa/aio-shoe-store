@@ -2,10 +2,12 @@ import styles from "./sizeSelect.module.css";
 
 const SizeSelect  = ({
     selectedSize,
-    sizes
+    sizes,
+    setSelectedSize
 }:{
     selectedSize:number,
-    sizes:{size:number}[]
+    sizes:{size:number}[],
+    setSelectedSize:(s:number)=>void
 }) => {
     return (
         <div className={styles.container}>
@@ -23,6 +25,7 @@ const SizeSelect  = ({
                                 className={`${styles.size}
                                     ${selectedSize === s.size && styles.sizeSelected}
                                 `}
+                                onClick={() => setSelectedSize(s.size)}
                             >
                                 {s.size}
                             </div>

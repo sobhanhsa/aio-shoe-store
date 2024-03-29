@@ -44,10 +44,11 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
                 colors={shoe.colors}
                 selectedColor={selectedColor}
                 setSelectedColor={setSelectedColor}
-            />
+                />
             <SizeSelect
                 sizes={shoe.sizes}
                 selectedSize={selectedSize}
+                setSelectedSize={setSelectedSize}
             />
             <div className={styles.actions}>
                 <div className={styles.quantity}>
