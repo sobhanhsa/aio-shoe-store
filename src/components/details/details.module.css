@@ -9,6 +9,9 @@
     font-weight: bold;
     text-align: right;
     border-top: 1px solid #CAC9CF;
+}
+
+.top {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
@@ -26,3 +29,9 @@
     background: none;
 }
 
+.hiddenDescs {
+    font-size: 14px;
+    font-weight: normal;
+    direction: rtl;
+
+}
