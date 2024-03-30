@@ -21,11 +21,11 @@ const cartItemSchema = new Schema({
             },
             userId:{
                 required:true,
-                type:mongoose.Types.ObjectId
+                type:String
             },
             productId:{
                 required:true,
-                type:mongoose.Types.ObjectId
+                type:String
             },
         }
     },
