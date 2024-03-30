@@ -41,6 +41,19 @@ export const findCartsByUserId = async(userId:string) => {
     }
 }
 
+export const updateCartQuantity = async(cartId:string,newQuantity:number) => {
+    try {
+        await connectToDB();
+        const updatedCartItem = await CartItemModel.updateOne({
+            _id:cartId
+        },{
+            quantity : newQuantity
+        })
+        return updatedCartItem
+    } catch (err:Error&any) {
+        throw err
+    }
+}
 
 export const createCartItem = async (cartItem:CartItemType) => {
     try {
