@@ -5,10 +5,6 @@ const userSchema = new Schema({
     username:{
         type:String,
         required:true
-    },
-    cart:{
-        type:[mongoose.Types.ObjectId],
-        required:true
     }
 },
 { timestamps: true }
