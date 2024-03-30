@@ -1,17 +1,20 @@
 import { connectToDB } from "@/utils/db/utils";
 import { CartItemModel, CartItemType } from "./model";
 import { slugMaker } from "./utils";
+import mongoose from "mongoose";
 
-export const findCartByUserId = async(userId:string) => {
+export const findCartsByUserId = async(userId:string) => {
     try {
         await connectToDB();
         const cartItems : CartItemType[] = await CartItemModel.find({
-            userId:userId
+            'spec.userId':new mongoose.Types.ObjectId(userId)
         });
+        return cartItems
     } catch (err:Error&any) {
         throw err;
     }
 }
+
 
 export const createCartItem = async (cartItem:CartItemType) => {
     try {
