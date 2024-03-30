@@ -7,10 +7,19 @@ import styles from "./CartItem.module.css"
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { finalCartItem } from "@/utils/db/cartItem/data";
+import { useDebounce, useDebouncedCallback } from "use-debounce";
 
-const  CartItem = ({c}:{c:finalCartItem}) => {
+const  CartItem = ({c,mutate}:{c:finalCartItem,mutate:()=>void}) => {
     const [currentQuantity,setCurrentQuantity] = useState(c.quantity);
-
+    const [fixedCurrentQuantity] = useDebounce(currentQuantity,1500);
+    useEffect(() => {
+        fetch(process.env.NEXT_PUBLIC_API_URL+"cart/"+c._id+"?quantity="+fixedCurrentQuantity,{
+            method:"PATCH"
+        })
+        .then((res) => {
+            mutate()
+        })
+    },[fixedCurrentQuantity])
     return (
         <div className={styles.container} key={c._id}>
             <div className={styles.delete}>
@@ -23,9 +32,15 @@ const  CartItem = ({c}:{c:finalCartItem}) => {
                     fill
                 />
             </div>
-            <p className={styles.product}>
-                {c.product.name}
-            </p>
+            <div className={styles.product}>
+                <p className={styles.prodcutTitle}>
+                    {c.product.name}
+                </p>
+                <div className={styles.prodcutSpecs}>
+                    <p className={styles.prodcutSpec}>{c.spec.colorName}</p>
+                    <p className={styles.prodcutSpec}>{c.spec.size}</p>
+                </div>
+            </div>
             <p className={styles.price}>
                 {commaEmbedder(c.price)}
             </p>
