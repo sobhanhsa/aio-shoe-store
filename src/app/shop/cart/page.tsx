@@ -36,7 +36,9 @@ const  CartPage = () => {
     return (
         <div className={styles.container}>
             <p className={styles.title}>
-                سبد خرید(n مورد)
+                سبد خرید{
+                    data?.cartItems.length !== 0 && `(${data?.cartItems.length}مورد)`
+                }
             </p>
             <div className={styles.top}>
                 <div className={styles.trashCan}>
