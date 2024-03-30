@@ -12,7 +12,19 @@ import { useEffect, useState } from "react";
 import { AiOutlineMinus } from "react-icons/ai";
 import { MdOutlineAdd } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
+import { CartItemType } from "@/utils/db/cartItem/model";
 
+import {Types} from "mongoose";
+
+const addToCart = async(cartItem:CartItemType) => {
+    const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"cart",{
+        method:"POST",
+        body:JSON.stringify({
+            ...cartItem
+        })
+    });
+    return res
+}   
 const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
     const shoe : ShoeType = JSON.parse(stringedShoe);
     const prices = (shoe.prices.map(p => p.price))
@@ -23,6 +35,27 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
     const [currentQuantity,setCurrentQuantity] = useState(1);
 
     const [colors,setColors] = useState(shoe.colors);
+
+    const handleAddCart = () => {
+        
+        const userId = "66080c8426f9e94d1651ae23"
+
+        const res = addToCart({
+            spec:{
+                productId:new Types.ObjectId(shoe._id) as any,
+                colorName:selectedColor,
+                size:selectedSize,
+                userId:new Types.ObjectId(userId) as any,
+            },
+            quantity:currentQuantity,
+        } as any);
+
+        console.log(res.then(r => {
+            console.log(r.status)
+            console.log(r.json())
+        }));
+
+    }
 
     useEffect(() => {
         const price = shoe.prices.find(
@@ -98,7 +131,8 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
                         <MdOutlineAdd size={20}/>
                     </button>
                 </div>
-                <div className={styles.addCart}>
+                <div className={styles.addCart} 
+                    onClick={handleAddCart}>
                     افزودن به سبد خرید  
                 </div>
                 <div className={styles.buyNow}>
