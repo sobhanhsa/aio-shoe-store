@@ -9,7 +9,6 @@ import LatestProducts from "@/components/latestProducts/LatestProducts";
 import CategorySwiper from "@/components/categorySwiper/CategorySwiper";
 
 export default async function Home() {
-  await createShoes();
   const shoes = await findShoes();
   return (
     <div className={styles.container}>
@@ -26,7 +25,7 @@ export default async function Home() {
             shoes.map((shoe:ShoeType) => {
               return (
                 <ProductCard
-                  id={shoe._id}
+                  id={shoe._id.toString()}
                   name={shoe.name}
                   brand={shoe.brand}
                   colors={shoe.colors}
