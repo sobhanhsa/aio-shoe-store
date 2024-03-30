@@ -15,6 +15,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { CartItemType } from "@/utils/db/cartItem/model";
 
 import {Types} from "mongoose";
+import { toast } from "react-toastify";
 
 const addToCart = async(cartItem:CartItemType) => {
     const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"cart",{
@@ -50,10 +51,19 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
             quantity:currentQuantity,
         } as any);
 
-        console.log(res.then(r => {
-            console.log(r.status)
-            console.log(r.json())
-        }));
+        const toastRes = new Promise((resolve,reject) => {
+            res.then(
+                r => !r.ok 
+                ? reject("duplicated cart item") 
+                : resolve("success")
+            )
+        })
+
+        toast.promise(toastRes,{
+            pending:"در حال افزودن محصول به سبد خرید",
+            success:"با موفقیت افزوده شد",
+            error:"این محصول قبلا افزوده شده است"
+        })
 
     }
 
