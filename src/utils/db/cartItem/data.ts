@@ -54,6 +54,17 @@ export const updateCartQuantity = async(cartId:string,newQuantity:number) => {
         throw err
     }
 }
+export const deleteCartItem = async(cartId:string) => {
+    try {
+        await connectToDB();
+        const deletedCartItem = await CartItemModel.deleteOne({
+            _id:cartId
+        })
+        return deletedCartItem
+    } catch (err:Error&any) {
+        throw err
+    }
+}
 
 export const createCartItem = async (cartItem:CartItemType) => {
     try {
