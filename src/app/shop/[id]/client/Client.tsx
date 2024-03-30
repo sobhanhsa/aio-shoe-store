@@ -43,10 +43,10 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
 
         const res = addToCart({
             spec:{
-                productId:new Types.ObjectId(shoe._id) as any,
+                productId:shoe._id,
                 colorName:selectedColor,
                 size:selectedSize,
-                userId:new Types.ObjectId(userId) as any,
+                userId,
             },
             quantity:currentQuantity,
         } as any);
