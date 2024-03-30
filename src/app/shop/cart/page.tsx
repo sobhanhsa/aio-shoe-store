@@ -32,12 +32,15 @@ const fetcher = async(url:string) => {
 const  CartPage = () => {
     const {data,isLoading,mutate,error} = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/cart`
     ,fetcher);
+    console.log(data)
     
     return (
         <div className={styles.container}>
             <p className={styles.title}>
                 سبد خرید{
-                    data?.cartItems.length !== 0 && `(${data?.cartItems.length}مورد)`
+                    data?.cartItems.length !== 0 
+                    && data?.cartItems 
+                    && `(${data?.cartItems.length}مورد)`
                 }
             </p>
             <div className={styles.top}>
