@@ -1,0 +1,61 @@
+
+.container {
+    padding: 20px 0;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+.delete {
+    text-align: center;
+    padding: 0 15px;
+    flex: 1;
+}
+
+.imageContainer {
+    text-align: center;
+    /* padding: 0 41.5px; */
+    flex: 2;
+    width: 120px;
+    height: 140px;
+    position: relative;
+}
+
+.product {
+    text-align: center;
+    /* padding: 0 173.5px; */
+    flex: 8;
+}
+
+.price {
+    text-align: center;
+    
+    /* padding: 0 69.5px; */
+    flex: 3;
+}
+
+.quantity {
+    padding: 24px 12px;
+    flex: 3;
+    font-weight: bold;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 48px;
+    max-width: 130px;
+}
+
+.quantity > button {
+    cursor: pointer;
+    background: none;
+    padding: 0 10px;
+}
+
+.subTotal {
+    text-align: center;
+    /* padding: 0 49px; */
+    color: #C69B7B;
+    flex: 3;
+}
