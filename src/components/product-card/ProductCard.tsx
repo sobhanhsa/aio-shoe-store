@@ -2,6 +2,7 @@ import Image from "next/image"
 import styles from "./productCard.module.css"
 import Link from "next/link";
 import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
+import AddToCartButton from "@/components/addToCartButton/AddToCartButton";
 
 type ProductCardParams = {
     brand:      string
@@ -15,7 +16,10 @@ type ProductCardParams = {
     id:string
 };
 
+
+
 const  ProductCard = (params:ProductCardParams) => {
+
     const lowestPrice = Math.min(...params.prices
         .map(p => Number(p)));
     const highestPrice = Math.max(...params.prices
@@ -66,9 +70,9 @@ const  ProductCard = (params:ProductCardParams) => {
                     </p>
                 </div>
             </Link> 
-            <button className={styles.addButton}>
-            افزودن به سبد خرید 
-            </button>
+            <AddToCartButton 
+                id={params.id} colorName={params.colors[0].color.name} 
+                size={params.sizes[0].size} />
         </div>
     )
 };
