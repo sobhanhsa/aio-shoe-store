@@ -1,27 +1,25 @@
-import { CartModel, CartType } from "../cart/model";
-import { ShoeModel } from "../shoe/model";
-import { connectToDB } from "../utils"
-import { UserModel, UserType } from "./model";
+import { connectToDB } from "@/utils/db/utils";
+import { CartItemModel, CartItemType } from "../cartItem/model";
 
-export const findCartByUserName = async(username:string) => {
+export const findCartByUserId = async(userId:string) => {
     try {
         await connectToDB();
-        const user : UserType = await UserModel.findOne({
-            username
-        }) as any;
-        const rawCart : CartType = await CartModel
-            .findById(user.cart) as any;
-        
-        const cardItems = rawCart.products
-            .map(async p =>( 
-                {
-                quantity:       p.quantity,
-                product : await ShoeModel.findById(p.productId)
-            }));
+        const cartItems : CartItemType[] = await CartItemModel.find({
+            userId:userId
+        });
+    } catch (err:Error&any) {
+        throw err;
+    }
+}
 
-        return cardItems
-            
-    } catch (err) {
+export const createCartItem = async (cartItem:CartItemType) => {
+    try {
+        await connectToDB();
+        const createdCartItem = await CartItemModel.create({
+            ...cartItem
+        })
+        return createCartItem
+    } catch (err:Error&any) {
         throw err
     }
 }
