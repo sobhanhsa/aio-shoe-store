@@ -25,6 +25,21 @@ export const findShoe = async (id:string) => {
     }
 }
 
+export const findCartShoe = async (id:string) => {
+    try {
+        await connectToDB();
+        const shoe = await ShoeModel.findById({
+            _id:id
+        },"images name prices");
+        return shoe
+    } catch (err:any&Error) {
+        console.log(err.message)
+        throw err
+    }
+}
+
+
+
 
 export const createShoes = async () => {
     try {
