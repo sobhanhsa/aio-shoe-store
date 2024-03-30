@@ -6,9 +6,33 @@ import { AiOutlineClose, AiOutlineMinus } from "react-icons/ai";
 import { MdOutlineAdd } from "react-icons/md";
 import { useState } from "react";
 import Image from "next/image";
+import { findCartsByUserId } from "@/utils/db/cartItem/data";
+import { CartItemType } from "@/utils/db/cartItem/model";
+import useSWR from "swr";
+
+const fetcher = async(url:string) => {
+
+    const res = await fetch(url);
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        const error = new Error(data.message);
+        
+        throw error;
+
+    }
+
+    return data;
+
+}
+
 
 const  CartPage = () => {
     const [currentQuantity,setCurrentQuantity] = useState(1);
+    const {data,isLoading,mutate,error} = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/cart`
+    ,fetcher);
+    console.log(error,data);
     return (
         <div className={styles.container}>
             <p className={styles.title}>
