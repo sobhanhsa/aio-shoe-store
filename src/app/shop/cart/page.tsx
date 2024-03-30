@@ -62,7 +62,7 @@ const  CartPage = () => {
             <div className={styles.cartsContainer}>
                 {
                     data?.cartItems?.map((c:any) => (
-                        <CartItem key={c._id} c={c} />
+                        <CartItem key={c._id} c={c} mutate={mutate}/>
                     ))
                 }
             </div>
