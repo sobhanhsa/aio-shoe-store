@@ -20,9 +20,17 @@ const  CartItem = ({c,mutate}:{c:finalCartItem,mutate:()=>void}) => {
             mutate()
         })
     },[fixedCurrentQuantity])
+    const handleDelete = () => {
+        fetch(process.env.NEXT_PUBLIC_API_URL+"cart/"+c._id,{
+            method:"DELETE"
+        })
+        .then((res) => {
+            mutate()
+        })
+    }
     return (
         <div className={styles.container} key={c._id}>
-            <div className={styles.delete}>
+            <div className={styles.delete} onClick={handleDelete}>
                 <AiOutlineClose style={{cursor:"pointer"}} size={20} color="red"/>
             </div>
             <div className={styles.imageContainer}>
