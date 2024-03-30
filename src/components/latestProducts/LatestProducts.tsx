@@ -26,7 +26,7 @@ const LatestProducts  = async() => {
                         colors={shoe.colors}
                         image={shoe.images[0].image}
                         sizes={shoe.sizes}
-                        prices={shoe.prices}
+                        prices={shoe.prices.map(p => p.price)}
                         tumbDesc={shoe.desc.substring(0,55)}
                         />
                     )
