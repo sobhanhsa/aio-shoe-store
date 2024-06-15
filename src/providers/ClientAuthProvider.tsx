@@ -1,9 +1,19 @@
 "use client"
 
+import { UserType } from "@/utils/db/user/model";
 import { ReactNode } from "react";
 
-const ClientAuthProvider  = ({children,status}:{children:ReactNode,status:string}) => {
+const ClientAuthProvider  = (
+        {children,status,user}
+        :
+        {children:ReactNode,status:boolean,user:UserType|null}
+    ) => {
     
+
+    if (typeof window !== "undefined") {
+        console.log(user);
+        
+    }
 
     return (
         <div>
