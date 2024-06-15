@@ -1,5 +1,5 @@
 import { connectToDB } from "@/utils/db/utils";
-import { CartItemModel, CartItemType } from "./model";
+import { CartItemDtoType, CartItemModel, CartItemType } from "./model";
 import { slugMaker } from "./utils";
 import mongoose from "mongoose";
 import { findCartShoe, findShoe } from "@/utils/db/shoe/data";
@@ -66,7 +66,7 @@ export const deleteCartItem = async(cartId:string) => {
     }
 }
 
-export const createCartItem = async (cartItem:CartItemType) => {
+export const createCartItem = async (cartItem:CartItemDtoType) => {
     try {
         await connectToDB();
         const slug = slugMaker(cartItem.spec);

@@ -71,8 +71,10 @@ const  ProductCard = (params:ProductCardParams) => {
                 </div>
             </Link> 
             <AddToCartButton 
-                id={params.id} colorName={params.colors[0].color.name} 
-                size={params.sizes[0].size} />
+                colorName={params.colors[0].color.name} 
+                size={params.sizes[0].size} 
+                productId={params.id}
+            />
         </div>
     )
 };

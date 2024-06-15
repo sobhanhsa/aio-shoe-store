@@ -16,16 +16,9 @@ import { CartItemType } from "@/utils/db/cartItem/model";
 
 import {Types} from "mongoose";
 import { toast } from "react-toastify";
+import { addToCart, handleAddToCart } from "@/hooks/addCart";
 
-const addToCart = async(cartItem:CartItemType) => {
-    const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"cart",{
-        method:"POST",
-        body:JSON.stringify({
-            ...cartItem
-        })
-    });
-    return res
-}   
+
 const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
     const shoe : ShoeType = JSON.parse(stringedShoe);
     const prices = (shoe.prices.map(p => p.price))
@@ -36,36 +29,6 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
     const [currentQuantity,setCurrentQuantity] = useState(1);
 
     const [colors,setColors] = useState(shoe.colors);
-
-    const handleAddCart = () => {
-        
-        const userId = "66080c8426f9e94d1651ae23"
-
-        const res = addToCart({
-            spec:{
-                productId:shoe._id,
-                colorName:selectedColor,
-                size:selectedSize,
-                userId,
-            },
-            quantity:currentQuantity,
-        } as any);
-
-        const toastRes = new Promise((resolve,reject) => {
-            res.then(
-                r => !r.ok 
-                ? reject("duplicated cart item") 
-                : resolve("success")
-            )
-        })
-
-        toast.promise(toastRes,{
-            pending:"در حال افزودن محصول به سبد خرید",
-            success:"با موفقیت افزوده شد",
-            error:"این محصول قبلا افزوده شده است"
-        })
-
-    }
 
     useEffect(() => {
         const price = shoe.prices.find(
@@ -142,7 +105,14 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
                     </button>
                 </div>
                 <div className={styles.addCart} 
-                    onClick={handleAddCart}>
+                    onClick={handleAddToCart.bind({
+                        quantity:currentQuantity,
+                        spec:{
+                            productId:shoe._id,
+                            colorName:selectedColor,
+                            size:selectedSize
+                        }
+                    })}>
                     افزودن به سبد خرید  
                 </div>
                 <div className={styles.buyNow}>

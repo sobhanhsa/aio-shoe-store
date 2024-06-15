@@ -3,6 +3,20 @@ import mongoose, { InferSchemaType, Schema } from "mongoose";
 
 const userSchema = new Schema({
     username:{
+        unique:true,
+        type:String,
+        required:true
+    },
+    email:{
+        unique:true,
+        type:String,
+        required:true
+    },
+    hash:{
+        type:String,
+        required:true
+    },
+    name:{
         type:String,
         required:true
     }

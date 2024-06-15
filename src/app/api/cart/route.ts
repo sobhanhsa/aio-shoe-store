@@ -1,11 +1,33 @@
 import { createCartItem, findCartsByUserId } from "@/utils/db/cartItem/data";
+import { UserType } from "@/utils/db/user/model";
 import { connectToDB } from "@/utils/db/utils";
+import { authMiddleWare } from "@/utils/middlewares/auth.middleware";
+import { handler } from "@/utils/middlewares/handler";
 import { NextRequest, NextResponse } from "next/server";
+import { z } from "zod";
 
-export const POST = async(req:NextRequest) => {
+const zCartBody = z.object({
+    spec:z.object({
+        colorName:z.string().nonempty(),
+        size:z.number().nonnegative(),
+        userId:z.string().nonempty(),
+        productId:z.string().nonempty(),
+    }),
+    quantity:z.number().nonnegative().min(1)
+}).strict();
+
+type bodyType = z.infer<typeof zCartBody>; 
+
+const postHandler = async(req:NextRequest) => {
     try {
-        const body = await req.json();
+        
+        //req contains user
 
+        const user : UserType = (req as any).user;
+
+        const body : bodyType = await req.json();
+
+        body.spec.userId = user._id;
 
         const newCartItem = await createCartItem(body);
 
@@ -39,6 +61,8 @@ export const POST = async(req:NextRequest) => {
         
     }
 }
+
+export const POST = handler(authMiddleWare,postHandler);
 
 export const GET = async(req:NextRequest) => {
     try {

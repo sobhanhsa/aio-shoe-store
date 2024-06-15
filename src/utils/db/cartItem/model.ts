@@ -42,4 +42,9 @@ export type CartItemType = InferSchemaType<typeof cartItemSchema> & {
 _id:string
 };
 
+export type CartItemDtoType = Omit<
+    CartItemType,
+    "_id"|"updatedAt"|"createdAt"|"dsfsadf"|"slug"|"NativeDate"
+>;
+
 export const CartItemModel = mongoose.models.CartItem || mongoose.model("CartItem",cartItemSchema);
