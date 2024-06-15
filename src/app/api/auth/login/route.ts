@@ -5,6 +5,7 @@ import { z } from "zod";
 import { formatZodError } from "@/utils/zod/formatError";
 import bcrypt from "bcrypt";
 import { UserModel, UserType } from "@/utils/db/user/model";
+import { connectToDB } from "@/utils/db/utils";
 
 
 const zBody = z.object({
@@ -35,6 +36,8 @@ export const POST = async(req:NextRequest) => {
         const body : bodyType = await req.json();
 
         zodParser(zBody.parse,body);
+
+        await connectToDB();
 
         const user = await UserModel.findOne({
             email:body.email
