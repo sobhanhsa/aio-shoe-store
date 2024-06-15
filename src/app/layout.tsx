@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import ToastProvider from "@/providers/ToastProvider";
+import { ServerAuthProvider } from "@/providers/ServerAuthProvider";
+import ClientAuthProvider from "@/providers/ClientAuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,9 +24,11 @@ export default function RootLayout({
         <ToastProvider>
           <div className="container">
             <div className="wrapper">
-              <Navbar />
-              {children}
-              <Footer />
+              <ServerAuthProvider>
+                  <Navbar />
+                    {children}
+                  <Footer />
+              </ServerAuthProvider>
             </div>
           </div>
         </ToastProvider>
