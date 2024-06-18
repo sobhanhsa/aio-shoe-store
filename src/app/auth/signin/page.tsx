@@ -1,23 +1,37 @@
 "use client"
 
-import { ReactNode } from "react"
+import { FormEvent, ReactNode, useState } from "react"
 import styles from "./signinPage.module.css"
+import { useSignIn } from "@/hooks/signIn"
 
 export const SignInPage = () => {
 
+    type keysType = "email" | "password"
 
+    const [formInfo,setFormInfo] = useState({
+        email:"",
+        password:"",
+    });
 
-    const onSubmit = (e?:any) => {
-        // e.target.preventDefault();
+    const onSubmit = (e?:FormEvent) => {
 
-        fetch(process.env.NEXT_PUBLIC_API_URL+"auth/login",{
-            method:"POST",
-            body:JSON.stringify({
-                email:"sobi@gmail.com",
-                password:"12345678"
-            }),
-        }).then(r => console.log(r)
-        )
+        e?.preventDefault();
+
+        console.log("auth SignInPage credentials : ",formInfo);
+        
+        
+
+        useSignIn(formInfo);
+
+    }
+
+    const onInputChange = (e:any) => {
+        setFormInfo(prev  => {
+            prev[e.target.name as keysType] = e.target.value;
+            return {
+                ...prev
+            }
+        })
     }
 
     return (
@@ -27,12 +41,14 @@ export const SignInPage = () => {
                     خوش اومدی مهندس ، حال و احوال؟
                 </h1>
                 <input className={styles.input} 
+                    onChange={onInputChange}
                     type="email"
                     name="email" 
                     required
                     placeholder="ایمیل"
                 />
                 <input className={styles.input}
+                    onChange={onInputChange}
                     type="password"
                     name="password" 
                     required
