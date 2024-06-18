@@ -36,11 +36,19 @@ export const ServerAuthProvider = async({children}:{children:ReactNode}) => {
 
     //send it to client provider
 
+    console.log("providers ServerAuthProvider user : ",user);
+
     //note : user || null means if user was a falsy return null
 
     return (
         <>
-            <ClientAuthProvider status user={user || null}>
+            <ClientAuthProvider status user={
+                    //for react warning
+                    user 
+                        ? JSON.parse(JSON.stringify(user.toObject()))
+                        : null
+                }
+            >
                 {children}
             </ClientAuthProvider>
         </>
