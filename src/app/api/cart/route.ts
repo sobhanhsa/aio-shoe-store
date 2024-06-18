@@ -41,7 +41,7 @@ const postHandler = async(req:NextRequest) => {
             
         )
     } catch (err:{message:string}&any) {
-        console.log(err.message);
+        console.log("cart POST "+err.message);
         if ((err.message).includes("E11000")) {
             return NextResponse.json(
                 {
@@ -82,7 +82,7 @@ export const GET = async(req:NextRequest) => {
             
         )
     } catch (err:{message:string}&any) {
-        console.log(err.message);
+        console.log("cart GET",err.message);
         return NextResponse.json(
             {
                 message:err.message
