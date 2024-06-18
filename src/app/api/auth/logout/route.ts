@@ -23,7 +23,7 @@ export const GET = (req:NextRequest) => {
     try {
         const token = cookies().get("access_token");
 
-        console.log("token : ",token);
+        console.log("logout GET token : ",token);
 
         if (!token?.value) {
             throw new Error("you are not logged in")
