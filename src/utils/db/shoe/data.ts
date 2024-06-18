@@ -7,7 +7,7 @@ export const findShoes = async () => {
         const shoes = await ShoeModel.find({});
         return shoes
     } catch (err : any&Error) {
-        console.log(err.message);
+        console.log("utils db findShoes-error : ",err.message);
         throw err
     }
 };
@@ -20,7 +20,7 @@ export const findShoe = async (id:string) => {
         });
         return shoe
     } catch (err:any&Error) {
-        console.log(err.message)
+        console.log("utils db findShoe-error : ",err.message);
         throw err
     }
 }
@@ -33,7 +33,7 @@ export const findCartShoe = async (id:string) => {
         },"images name prices");
         return shoe
     } catch (err:any&Error) {
-        console.log(err.message)
+        console.log("utils db findCartShoe-error : ",err.message);
         throw err
     }
 }
@@ -143,7 +143,7 @@ export const createShoes = async () => {
         ]);
         return [shoes]
     } catch (err : any&Error) {
-        console.log(err.message);
+        console.log("utils db createShoes-error : ",err.message);
         throw err
     }
 }

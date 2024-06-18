@@ -3,12 +3,13 @@ import { UserModel, UserType } from "./model";
 
 export const GetUserById = async(id:string) => {
     
-    await connectToDB();
-
+    
     try{
-        return await UserModel.findById(id).select("-hash");
+        await connectToDB();
+        const user = await UserModel.findById(id).select("-hash");
+        return user
     }catch(err:any){
-        console.log("error in GetUserById : ",err.message);
+        console.log("utils db GetUserById-error : ",err.message);
         
         throw err.message
     }
