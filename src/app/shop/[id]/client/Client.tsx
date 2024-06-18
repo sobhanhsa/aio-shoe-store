@@ -16,7 +16,7 @@ import { CartItemType } from "@/utils/db/cartItem/model";
 
 import {Types} from "mongoose";
 import { toast } from "react-toastify";
-import { addToCart, handleAddToCart } from "@/hooks/addCart";
+import { handleAddToCart } from "@/hooks/addCart";
 
 
 const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
