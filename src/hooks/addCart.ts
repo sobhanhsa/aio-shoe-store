@@ -2,7 +2,7 @@ import { CartItemDtoType } from "@/utils/db/cartItem/model";
 import { toast } from "react-toastify";
 
 
-export const addToCart = async(
+export const fetcher = async(
     cartItem:CartItemDtoType
 ) => {
     const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"cart",{
@@ -25,7 +25,7 @@ export const handleAddToCart = function(this:{
         
     const cart = this;
 
-    const res = addToCart(cart as any);
+    const res = fetcher(cart as any);
 
     const toastRes = new Promise((resolve,reject) => {
         res.then(
