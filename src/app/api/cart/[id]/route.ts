@@ -7,7 +7,7 @@ export const PATCH = (req:NextRequest,{params}:{params:{id:string}}) => {
         connectToDB();
         const {searchParams} = new URL(req.url);
         const quantity = Number(searchParams.get("quantity"));
-        console.log(quantity);
+        console.log("cart [id] PATCH",quantity);
         const cart = updateCartQuantity(params.id,quantity);
         return NextResponse.json({
             cart,
