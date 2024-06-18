@@ -27,7 +27,7 @@ export const POST = async(req:NextRequest) => {
     try {
         const token = cookies().get("access_token");
 
-        console.log("token : ",token);
+        console.log("login POST token : ",token);
 
         if (token?.value) {
             throw new Error("you are already logged in")
@@ -49,7 +49,7 @@ export const POST = async(req:NextRequest) => {
 
         const result = await bcrypt.compare(body.password,user.hash as string);
 
-        console.log("result : ",result)
+        console.log("login POST result : ",result)
 
         if (!result) throw new Error("incorrect password");
 
@@ -76,9 +76,30 @@ export const POST = async(req:NextRequest) => {
         });
 
         
-    } catch (error:any) {
+    } catch (error : any) {
+        
+        let statusCode = 500;
+
+        if (
+            (
+                error.message as string
+            ).includes("you are already logged in")
+            ||
+            (
+                error.message as string
+            ).includes("email does not match")
+            ||
+            (
+                error.message as string
+            ).includes("incorrect password")
+        ) {
+            statusCode = 400
+        }
+
         return NextResponse.json({
             message:error.message
+        },{
+            status:statusCode
         })
     }
 }
