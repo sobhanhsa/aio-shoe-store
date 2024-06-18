@@ -32,8 +32,7 @@ const fetcher = async(url:string) => {
 const  CartPage = () => {
     const {data,isLoading,mutate,error} = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/cart`
     ,fetcher);
-    console.log(data)
-    
+        
     return (
         <div className={styles.container}>
             <p className={styles.title}>
