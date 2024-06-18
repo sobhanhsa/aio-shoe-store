@@ -11,14 +11,14 @@ const ClientAuthProvider  = (
     
 
     if (typeof window !== "undefined") {
-        console.log(user);
+        console.log("providers ClientAuthProvider user : ",user);
         
     }
 
     return (
-        <div>
+        <>
             {children}
-        </div>
+        </>
     )
 };
 
