@@ -1,7 +1,8 @@
 "use client"
 
+import { AuthContext } from "@/context/authContext";
 import { UserType } from "@/utils/db/user/model";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 
 const ClientAuthProvider  = (
         {children,status,user}
@@ -15,10 +16,15 @@ const ClientAuthProvider  = (
         
     }
 
+    const [auth,setAuth] = useState<{status:any,user:any}>({
+        status,
+        user
+    });
+
     return (
-        <>
+        <AuthContext.Provider value={{...auth,setAuth}}>
             {children}
-        </>
+        </AuthContext.Provider>        
     )
 };
 

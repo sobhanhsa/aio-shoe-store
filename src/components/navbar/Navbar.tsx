@@ -6,6 +6,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
 import { FaRegHeart } from "react-icons/fa";
 import { PiUserCircleThin } from "react-icons/pi";
+import { AccountMenu } from "../accountMenu/AccountMenu";
 
 
 const  Navbar = () => {
@@ -30,7 +31,8 @@ const  Navbar = () => {
             </div>
             <div className={styles.icons}>
                 <CiSearch size={20} />
-                <PiUserCircleThin size={20} />
+                {/* account icon */}
+                <AccountMenu />
                 <CiHeart size={20} />
                 <Link href={"/shop/cart"}>
                     <CiShoppingCart size={20} />

@@ -2,37 +2,28 @@ import { redirect, useRouter } from "next/navigation";
 import { render } from "react-dom";
 import { toast } from "react-toastify";
 
-export const useSignUp = async(credentials:any) => {
+export const useLogOut = async() => {
     
     // fetch
-    const res = await fetch(
-        process.env.NEXT_PUBLIC_API_URL+"auth/signup",{
-        method:"POST",
-        body:JSON.stringify(
-            credentials
-        ),
-        }
-    );
+    const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"auth/logout");
 
-    console.log("hooks useSignup res : ",res);
+    console.log("hooks useLogOut res : ",res);
     
-    
+
+    // if res was ok change auth status
+
     // toast the result
 
     const toastRes = new Promise(async(resolve,reject) => {
             if (res.ok) {
-                resolve("خوش امدید");
+                resolve("حیف شد رفتی");
             }
 
             const body : {message:string} = await res.json();
         
             switch (body.message) {
-                case "must be 5 or more characters long":
-                    reject("رمز عبور حداقل باید پنچ حرف باشد")
-                case "invalid email" :
-                    reject("ایمیل اشتباه");
-                case "you are already logged in" :
-                    reject("شما در حال حاضر وارد شده اید");
+                case "you are not logged in" :
+                    reject("شما هنوز وارد نشده اید")
                 default :
                     reject("شرمساریم!مشکلی رخ داد");
                 
@@ -56,7 +47,6 @@ export const useSignUp = async(credentials:any) => {
 
     // redirect
 
-    useRouter().refresh();
-
+    
 
 }

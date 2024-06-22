@@ -21,7 +21,8 @@ button {
   --text:#2d0800;
   --textSoft:#58342d;
   --bg:#fefefe;
-  --bgSoft:rgb(207, 207, 207);
+  --bgSoft:rgb(228, 228, 228);
+  --primary:#55322c;
   --brand:crimson
 }
 @font-face {

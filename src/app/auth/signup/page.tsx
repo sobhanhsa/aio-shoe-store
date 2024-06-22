@@ -3,10 +3,11 @@
 import { FormEvent, ReactNode, useState } from "react"
 import styles from "./signupPage.module.css"
 import { useSignIn } from "@/hooks/signIn"
+import { useSignUp } from "@/hooks/signUp"
 
 export const SignUpPage = () => {
 
-    type keysType = "email" | "password"
+    type keysType = "email" | "password" | "username" | "name";
 
     const [formInfo,setFormInfo] = useState({
         email:"",
@@ -23,7 +24,7 @@ export const SignUpPage = () => {
         
         
 
-        useSignIn(formInfo);
+        useSignUp(formInfo);
 
     }
 
