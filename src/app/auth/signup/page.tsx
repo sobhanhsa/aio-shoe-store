@@ -2,8 +2,9 @@
 
 import { FormEvent, ReactNode, useState } from "react"
 import styles from "./signupPage.module.css"
-import { useSignIn } from "@/hooks/signIn"
-import { useSignUp } from "@/hooks/signUp"
+import { useSignUp } from "@/hooks/useSignUp"
+import { useRouter } from "next/navigation"
+import { useAuthContext } from "@/context/authContext"
 
 export const SignUpPage = () => {
 
@@ -16,6 +17,12 @@ export const SignUpPage = () => {
         name:""
     });
 
+    // define useSignUp requirments
+
+    const router = useRouter();
+
+    const useAuth = useAuthContext();
+
     const onSubmit = (e?:FormEvent) => {
 
         e?.preventDefault();
@@ -24,7 +31,7 @@ export const SignUpPage = () => {
         
         
 
-        useSignUp(formInfo);
+        useSignUp(formInfo,useAuth,router);
 
     }
 

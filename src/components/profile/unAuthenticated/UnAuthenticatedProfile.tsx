@@ -8,6 +8,11 @@ export const UnAuthenticatedProfile = () => {
                 <h1>
                     شرمنده ولی شماهنوز وارد نشدی...
                 </h1>
+
+                <Link className={styles.link} href={"/"}>
+                    بازگشت به خانه
+                </Link>
+                
                 <div className={styles.linksContainer}>
 
                     <Link href={"/auth/signup"}>

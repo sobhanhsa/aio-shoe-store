@@ -2,11 +2,19 @@
 
 import { FormEvent, ReactNode, useState } from "react"
 import styles from "./signinPage.module.css"
-import { useSignIn } from "@/hooks/signIn"
+import { useSignIn } from "@/hooks/useSignIn"
+import { useRouter } from "next/navigation"
+import { useAuthContext } from "@/context/authContext"
 
 export const SignInPage = () => {
 
     type keysType = "email" | "password"
+
+    // define useSignUp requirments
+
+    const router = useRouter();
+
+    const useAuth = useAuthContext();
 
     const [formInfo,setFormInfo] = useState({
         email:"",
@@ -21,7 +29,7 @@ export const SignInPage = () => {
         
         
 
-        useSignIn(formInfo);
+        useSignIn(formInfo,useAuth,router);
 
     }
 

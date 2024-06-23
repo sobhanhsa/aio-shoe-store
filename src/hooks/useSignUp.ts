@@ -1,12 +1,18 @@
+import { stateType } from "@/context/authContext";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { redirect, useRouter } from "next/navigation";
 import { render } from "react-dom";
 import { toast } from "react-toastify";
 
-export const useSignIn = async(credentials:any) => {
+export const useSignUp = async(
+    credentials:any,
+    useAuth:stateType,
+    router:AppRouterInstance
+) => {
     
     // fetch
     const res = await fetch(
-        process.env.NEXT_PUBLIC_API_URL+"auth/login",{
+        process.env.NEXT_PUBLIC_API_URL+"auth/signup",{
         method:"POST",
         body:JSON.stringify(
             credentials
@@ -14,9 +20,9 @@ export const useSignIn = async(credentials:any) => {
         }
     );
 
-    console.log("hooks useSignIn res : ",res);
+    console.log("hooks useSignup res : ",res);
     
-
+    
     // toast the result
 
     const toastRes = new Promise(async(resolve,reject) => {
@@ -33,10 +39,6 @@ export const useSignIn = async(credentials:any) => {
                     reject("ایمیل اشتباه");
                 case "you are already logged in" :
                     reject("شما در حال حاضر وارد شده اید");
-                case "email does not match":
-                    reject("ایمیل ثبت نشده");
-                case "incorrect password":
-                    reject("رمز عبور اشتباه");
                 default :
                     reject("شرمساریم!مشکلی رخ داد");
                 
@@ -58,9 +60,16 @@ export const useSignIn = async(credentials:any) => {
         },
     });
 
+    // change auth status
+
+    useAuth.setAuth({
+        user:null,
+        status:null
+    });
+
     // redirect
 
-    useRouter().refresh();
+    router.refresh();
 
 
 }
