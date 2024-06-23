@@ -1,6 +1,6 @@
 "use client"
 
-import { useLogOut } from "@/hooks/logOut";
+import { useLogOut } from "@/hooks/useLogOut";
 import styles from "./authActions.module.css"
 import { CiEdit, CiLogout } from "react-icons/ci";
 import { useRouter } from "next/navigation";

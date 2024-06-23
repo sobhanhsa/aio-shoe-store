@@ -69,7 +69,7 @@ export const useSignUp = async(
 
     // redirect
 
-    router.refresh();
+    router.push("/");
 
 
 }
