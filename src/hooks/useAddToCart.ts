@@ -14,7 +14,7 @@ export const fetcher = async(
     return res
 } 
 
-export const handleAddToCart = function(this:{
+export const useAddToCart = function(this:{
     spec:{
         productId:string,
         colorName:string,

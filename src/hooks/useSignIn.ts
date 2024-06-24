@@ -1,4 +1,5 @@
 import { stateType } from "@/context/authContext";
+import { UserType } from "@/utils/db/user/model";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { redirect, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -22,6 +23,8 @@ export const useSignIn = async(
     console.log("hooks useSignIn res : ",res);
     
 
+    const body : {message:string,user:UserType} = await res.json();
+    
     // toast the result
 
     const toastRes = new Promise(async(resolve,reject) => {
@@ -29,7 +32,6 @@ export const useSignIn = async(
                 resolve("خوش امدید");
             }
 
-            const body : {message:string} = await res.json();
         
             switch (body.message) {
                 case "must be 5 or more characters long":
@@ -66,8 +68,8 @@ export const useSignIn = async(
     // change auth status
 
     useAuth.setAuth({
-        user:null,
-        status:null
+        user:body?.user ?? null,
+        status:true
     });
 
     // redirect

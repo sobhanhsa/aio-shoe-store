@@ -16,7 +16,7 @@ import { CartItemType } from "@/utils/db/cartItem/model";
 
 import {Types} from "mongoose";
 import { toast } from "react-toastify";
-import { handleAddToCart } from "@/hooks/addCart";
+import { useAddToCart } from "@/hooks/useAddToCart";
 
 
 const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
@@ -105,7 +105,7 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
                     </button>
                 </div>
                 <div className={styles.addCart} 
-                    onClick={handleAddToCart.bind({
+                    onClick={useAddToCart.bind({
                         quantity:currentQuantity,
                         spec:{
                             productId:shoe._id,

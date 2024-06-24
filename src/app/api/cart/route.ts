@@ -18,7 +18,7 @@ const zCartBody = z.object({
 
 type bodyType = z.infer<typeof zCartBody>; 
 
-const postHandler = async(req:NextRequest) => {
+const post = async(req:NextRequest) => {
     try {
         
         //req contains user
@@ -62,16 +62,19 @@ const postHandler = async(req:NextRequest) => {
     }
 }
 
-export const POST = handler(authMiddleWare,postHandler);
+export const POST = handler(authMiddleWare,post);
 
-export const GET = async(req:NextRequest) => {
+export const get = async(req:NextRequest) => {
     try {
         await connectToDB();
+        
 
-        const userId = "66080c8426f9e94d1651ae23"
+        const user : UserType = (req as any).user;
 
+        const userId = user._id;
+        
         const carts = await findCartsByUserId(userId);
-
+        
         return NextResponse.json(
             {
                 message:"success",
@@ -93,3 +96,5 @@ export const GET = async(req:NextRequest) => {
         
     }
 }
+
+export const GET = handler(authMiddleWare,get);
