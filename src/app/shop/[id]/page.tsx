@@ -1,4 +1,4 @@
-import { findShoe } from "@/utils/db/shoe/data";
+import { findShoe } from "@/utils/db/product/data";
 import styles from "./singleShoe.module.css"
 import { ShoeType } from "@/utils/db/shoe/model";
 import Image from "next/image";

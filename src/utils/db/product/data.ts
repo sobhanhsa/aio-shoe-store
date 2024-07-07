@@ -1,10 +1,23 @@
 import { connectToDB } from "../utils";
-import { ShoeModel } from "./model"
+import { ProductModel } from "./model"
 
 export const findShoes = async () => {
     try {
         await connectToDB();
-        const shoes = await ShoeModel.find({});
+        const shoes = await ProductModel.find({});
+        return shoes
+    } catch (err : any&Error) {
+        console.log("utils db findShoes-error : ",err.message);
+        throw err
+    }
+};
+
+export const findShoesByFilter = async (query:object) => {
+    try {
+        await connectToDB();
+        const shoes = await ProductModel.find({
+            sizes:{$in:{}}
+        });
         return shoes
     } catch (err : any&Error) {
         console.log("utils db findShoes-error : ",err.message);
@@ -15,7 +28,7 @@ export const findShoes = async () => {
 export const findShoe = async (id:string) => {
     try {
         await connectToDB();
-        const shoe = await ShoeModel.findById({
+        const shoe = await ProductModel.findById({
             _id:id
         });
         return shoe
@@ -28,7 +41,7 @@ export const findShoe = async (id:string) => {
 export const findCartShoe = async (id:string) => {
     try {
         await connectToDB();
-        const shoe = await ShoeModel.findById({
+        const shoe = await ProductModel.findById({
             _id:id
         },"images name prices");
         return shoe
@@ -46,8 +59,8 @@ export const createShoes = async () => {
         await connectToDB();
         const p = `لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.`
         const thumbP = "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادید "
-        await ShoeModel.deleteMany({});
-        const shoes = await ShoeModel.create([{
+        await ProductModel.deleteMany({});
+        const shoes = await ProductModel.create([{
             category:"man",
             brand:"پوما",
             name:`

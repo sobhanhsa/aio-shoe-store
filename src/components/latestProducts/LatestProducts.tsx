@@ -1,4 +1,4 @@
-import { findShoes } from "@/utils/db/shoe/data";
+import { findShoes } from "@/utils/db/product/data";
 import styles from "./latestProducts.module.css"
 import ProductCard from "@/components/product-card/ProductCard";
 import { ShoeType } from "@/utils/db/shoe/model";

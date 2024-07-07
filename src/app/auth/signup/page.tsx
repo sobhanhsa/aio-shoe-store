@@ -3,7 +3,7 @@
 import { FormEvent, ReactNode, useState } from "react"
 import styles from "./signupPage.module.css"
 import { useSignUp } from "@/hooks/useSignUp"
-import { useRouter } from "next/navigation"
+import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useAuthContext } from "@/context/authContext"
 
 export const SignUpPage = () => {
@@ -23,6 +23,8 @@ export const SignUpPage = () => {
 
     const useAuth = useAuthContext();
 
+    const cbRoute = useSearchParams().get("cbRoute") ?? undefined;
+
     const onSubmit = (e?:FormEvent) => {
 
         e?.preventDefault();
@@ -31,7 +33,7 @@ export const SignUpPage = () => {
         
         
 
-        useSignUp(formInfo,useAuth,router);
+        useSignUp(formInfo,useAuth,router,cbRoute);
 
     }
 

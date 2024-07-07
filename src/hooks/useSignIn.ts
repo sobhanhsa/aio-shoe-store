@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 export const useSignIn = async(
     credentials:any,
     useAuth:stateType,
-    router:AppRouterInstance
+    router:AppRouterInstance,
+    cbRoute?:string
 ) => {
 
     // fetch
@@ -65,16 +66,19 @@ export const useSignIn = async(
         },
     });
 
-    // change auth status
+    if (res.ok) {
+        // change auth status
+    
+        useAuth.setAuth({
+            user:body?.user ?? null,
+            status:true
+        });
+    
+        // redirect
+    
+        router.push(cbRoute || "/");
+    }
 
-    useAuth.setAuth({
-        user:body?.user ?? null,
-        status:true
-    });
-
-    // redirect
-
-    router.push("/");
 
 
 }

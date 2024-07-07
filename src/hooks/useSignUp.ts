@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 export const useSignUp = async(
     credentials:any,
     useAuth:stateType,
-    router:AppRouterInstance
+    router:AppRouterInstance,
+    cbRoute?:string
 ) => {
     
     // fetch
@@ -23,6 +24,8 @@ export const useSignUp = async(
     console.log("hooks useSignup res : ",res);
     
     
+    const body : {message:string,user:any} = await res.json();
+
     // toast the result
 
     const toastRes = new Promise(async(resolve,reject) => {
@@ -30,7 +33,6 @@ export const useSignUp = async(
                 resolve("خوش امدید");
             }
 
-            const body : {message:string} = await res.json();
         
             switch (body.message) {
                 case "must be 5 or more characters long":
@@ -60,16 +62,18 @@ export const useSignUp = async(
         },
     });
 
-    // change auth status
-
-    useAuth.setAuth({
-        user:null,
-        status:null
-    });
-
-    // redirect
-
-    router.push("/");
+    if (res.ok) {
+        // change auth status
+    
+        useAuth.setAuth({
+            user:body?.user ?? null,
+            status:true
+        });
+    
+        // redirect
+    
+        router.push(cbRoute || "/");
+    }
 
 
 }

@@ -3,10 +3,14 @@
 import { FormEvent, ReactNode, useState } from "react"
 import styles from "./signinPage.module.css"
 import { useSignIn } from "@/hooks/useSignIn"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import { useAuthContext } from "@/context/authContext"
 
-export const SignInPage = () => {
+export const SignInPage = ({
+    searchParams
+}:{
+    searchParams?: { [key: string]: string | string[] | undefined };
+}) => {
 
     type keysType = "email" | "password"
 
@@ -20,16 +24,19 @@ export const SignInPage = () => {
         email:"",
         password:"",
     });
+    
+    const cbRoute = useSearchParams().get("cbRoute") ?? undefined;
+
+    console.log("signinpage SignInPage cbRoute query : ",cbRoute);
+    
 
     const onSubmit = (e?:FormEvent) => {
 
         e?.preventDefault();
 
-        console.log("auth SignInPage credentials : ",formInfo);
-        
         
 
-        useSignIn(formInfo,useAuth,router);
+        useSignIn(formInfo,useAuth,router,cbRoute);
 
     }
 

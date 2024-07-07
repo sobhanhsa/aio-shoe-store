@@ -2,8 +2,8 @@ import { connectToDB } from "@/utils/db/utils";
 import { CartItemDtoType, CartItemModel, CartItemType } from "./model";
 import { slugMaker } from "./utils";
 import mongoose from "mongoose";
-import { findCartShoe, findShoe } from "@/utils/db/shoe/data";
-import { ShoeType } from "../shoe/model";
+import { findCartShoe, findShoe } from "@/utils/db/product/data";
+import { ShoeType } from "../product/model";
 
 export type finalCartItem = CartItemType & {
     product:ShoeType,

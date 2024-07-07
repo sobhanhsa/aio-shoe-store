@@ -15,7 +15,7 @@ export const UnAuthenticatedProfile = () => {
                 
                 <div className={styles.linksContainer}>
 
-                    <Link href={"/auth/signup"}>
+                    <Link href={{pathname:"/auth/signup",query:{cbRoute:"/profile"}}}>
                         <div className={styles.item}>
                             <p className={styles.title}>
                                 اگر هنوز ثبت نام نکردی
@@ -24,7 +24,7 @@ export const UnAuthenticatedProfile = () => {
                         </div>
                     </Link>
 
-                    <Link href={"/auth/signin"}>
+                    <Link href={{pathname:"/auth/signin",query:{cbRoute:"/profile"}}}>
                         <div className={styles.item}>
                             <p className={styles.title}>
                                 اگر قبلا ثبت نام کردی

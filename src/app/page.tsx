@@ -1,7 +1,7 @@
 import ProductCard from "@/components/product-card/ProductCard";
 import styles from "./page.module.css";
 import { ShoeType } from "@/utils/db/shoe/model";
-import { createShoes, findShoes } from "@/utils/db/shoe/data";
+import { createShoes, findShoes } from "@/utils/db/product/data";
 import Featured from "@/components/featured/Featured";
 import SaleAd from "@/components/saleAd/SaleAd";
 import AboutUs from "@/components/aboutUs/AboutUs";
