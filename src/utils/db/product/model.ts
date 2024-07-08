@@ -3,7 +3,8 @@ import mongoose, { InferSchemaType, Schema } from "mongoose";
 
 const productSchema = new Schema({
     category:{
-        type:String,
+        type:Schema.Types.ObjectId,
+        ref:"Category",
         required:true,
     },
     brand:{
@@ -56,11 +57,11 @@ const productSchema = new Schema({
         type:[
             {
                 // properties
-                color:{
+                colorId:{
                     type:Schema.Types.ObjectId,
                     ref:"Color"
                 },
-                size:{
+                sizeId:{
                     type:Schema.Types.ObjectId,
                     ref:"Size"
                 },
@@ -83,11 +84,11 @@ const productSchema = new Schema({
             required:true
         }
     },
-    metarial:{
+    material:{
         required:true,
         type:String
     },
-    dimenstions:{
+    dimensions:{
         required:true,
         type:{
             x:{
@@ -111,7 +112,7 @@ const productSchema = new Schema({
 // export type ShoeType = InferSchemaType<typeof productSchema> & {
 // _id:string
 // };
-export type ProdcutType = InferSchemaType<typeof productSchema> & {
+export type ProductType = InferSchemaType<typeof productSchema> & {
 _id:string
 };
 
