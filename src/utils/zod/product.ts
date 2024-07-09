@@ -23,7 +23,7 @@ export const zProductDto = z.object({
         colorId:z.string().nonempty(),
         sizeId:z.string().nonempty(),
         price:z.number()
-    }).array(),
+    }).array().optional(),
     
     description:z.object({
         shortDesc:z.string().nonempty(),

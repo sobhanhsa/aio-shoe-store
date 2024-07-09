@@ -16,7 +16,9 @@ export const GET = async(
     try {
         await connectToDB();
 
-        
+        const includeDesc : string | null = req
+        .nextUrl.searchParams.get("includeDesc");
+    
         const rawIntrestedProperties : string | null = req
             .nextUrl.searchParams.get("instrests");
         
@@ -53,17 +55,19 @@ export const GET = async(
             ]
         };
         
+        
+
         let products : [] | ProductType[] = [];
 
         if (shouldPopulate) {
             products = await ProductModel
                 .find(query)
                 .populate(intrestedProperties)
-                .select("-description");
+                .select(includeDesc ? "" : "-description");
         }else{
             products = await ProductModel
                 .find(query)
-                .select("-description");
+                .select(includeDesc ? "" : "-description");
         }      
 
         products = [...products];

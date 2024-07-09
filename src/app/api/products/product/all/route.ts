@@ -6,14 +6,14 @@ export const GET = async(
     req:NextRequest,
 )=>{
     try {
+        const rawIntrestedProperties : string | null = req
+        .nextUrl.searchParams.get("instrests");
+        
+        
+        const intrestedProperties = rawIntrestedProperties?.split(",");
+        
         /*if was null assign it to false 
         & if it wasn't falsy assign it to true*/
-        
-        const rawIntrestedProperties : string | null = req
-            .nextUrl.searchParams.get("instrests");
-        
-
-        const intrestedProperties = rawIntrestedProperties?.split(",");
         
         const shouldPopulate = req.nextUrl.searchParams
         .get("populate") && intrestedProperties && true;
