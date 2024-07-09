@@ -6,6 +6,34 @@ export const GET = async(
     req:NextRequest,
 )=>{
     try {
+
+        const query : {} = JSON.parse(
+            req.nextUrl.searchParams.get("q")?.toString() ?? "{}"
+        );
+
+        console.log("query : ",query);
+        
+
+        /*
+
+        {
+            prices:{
+                $gt:500,
+                $lt:1500,
+            },
+
+            colors:{
+                $all:["...","..."]
+            },
+
+            sizes:{
+                $all:["...","..."]
+            }
+
+        }
+
+        */
+
         const rawIntrestedProperties : string | null = req
         .nextUrl.searchParams.get("instrests");
         
@@ -22,16 +50,28 @@ export const GET = async(
 
         let products = [];
         
+        // if (shouldPopulate) {
+        //     products = await ProductModel
+        //         .find({})
+        //         .populate(intrestedProperties)
+        //         .select("-description");
+        // }else{
+        //     products = await ProductModel
+        //         .find({})
+        //         .select("-description");
+        // }   
+        
+        // temp raw async query 
+        
+        const temp = ProductModel
+                .find(query)
+                .select("-description");
+
         if (shouldPopulate) {
-            products = await ProductModel
-                .find({})
-                .populate(intrestedProperties)
-                .select("-description");
-        }else{
-            products = await ProductModel
-                .find({})
-                .select("-description");
-        }   
+            temp.populate(intrestedProperties);
+        }
+
+        products = await temp.exec()
 
         return NextResponse.json({
             message:"success",
