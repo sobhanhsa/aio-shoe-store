@@ -1,46 +1,30 @@
-import { findShoes } from "@/utils/db/product/data";
-import styles from "./shopPage.module.css"
-import { ShoeType } from "@/utils/db/shoe/model";
-import ProductCard from "@/components/product-card/ProductCard";
-import Filter from "@/components/filter/Filter";
-import SortSelect from "@/components/sortSelect/SortSelect";
+import { ProductType } from "@/utils/db/product/model";
+import { ShopPageClient } from "./_client/ShopClient";
+
+const fetcher = async(
+    url=process.env.NEXT_PUBLIC_API_URL+"products/product/all"
+) => {
+    const res = await fetch(
+        url
+    );
+
+    const body = await res.json();
+
+    return body.products || []
+}
 
 const  ShopPage = async() => {
-    const shoes = await findShoes();
-    shoes.push(...shoes)
-    shoes.push(...shoes)
+
+    const products : ProductType[] = await fetcher();
+
+    console.log("server : ",products);
+    
+
 
     return (
-        <div className={styles.container}>
-            <div className={styles.filterWrapper}>
-                    <Filter />
-            </div>
-            <div className={styles.main}>
-                <SortSelect/>
-                <div className={styles.products}>
-                    {
-                        shoes.map((shoe:ShoeType) => {
-                        return (
-                            <ProductCard
-                            key={shoe._id}
-                            id={shoe._id}
-                            name={shoe.name}
-                            brand={shoe.brand}
-                            colors={shoe.colors}
-                            image={shoe.images[0].image}
-                            sizes={shoe.sizes}
-                            prices={shoe.prices.map(p => p.price)}
-                            tumbDesc={shoe.desc.substring(0,55)}
-                            />
-                        )
-                        })
-                    }
-                </div>
-            </div>
-            <div className={styles.paginationContainer}>
-
-            </div>
-        </div>
+        <>
+            <ShopPageClient products={products}/>
+        </>
     )
 };
 

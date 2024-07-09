@@ -3,14 +3,16 @@ import styles from "./productCard.module.css"
 import Link from "next/link";
 import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
 import AddToCartButton from "@/components/addToCartButton/AddToCartButton";
+import { ColorType } from "@/utils/db/color/model";
+import { SizeType } from "@/utils/db/size/model";
 
 type ProductCardParams = {
     brand:      string
     name:       string
     image:      string
     prices:      number[]
-    colors:     {color:{name:string,color:string}}[]
-    sizes:      {size:number}[]
+    colors:     ColorType[]
+    sizes:      SizeType[]
     tumbDesc:string
 } & {
     id:string
@@ -53,10 +55,10 @@ const  ProductCard = (params:ProductCardParams) => {
                         {
                             params.sizes.map(size => (
                                 <div 
-                                    key={size.size} 
+                                    key={size._id} 
                                     className={styles.size}
                                 >
-                                    {size.size}
+                                    {size.title}
                                 </div>
                             ))
                         }
@@ -71,8 +73,8 @@ const  ProductCard = (params:ProductCardParams) => {
                 </div>
             </Link> 
             <AddToCartButton 
-                colorName={params.colors[0].color.name} 
-                size={params.sizes[0].size} 
+                colorName={params.colors[0].title} 
+                size={params.sizes[0].value} 
                 productId={params.id}
             />
         </div>

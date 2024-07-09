@@ -2,7 +2,11 @@ import { englishRegex } from "@/regexs/englishExpression";
 import mongoose, { InferSchemaType, Schema } from "mongoose";
 
 const colorSchema = new Schema({
-    value:String,
+    value:{
+        type:String,
+        requried:true,
+        
+    },
     title:{
         type:String,
         required:true,
@@ -27,6 +31,10 @@ const colorSchema = new Schema({
 },{
     timestamps:true
 });
+
+export type ColorType = InferSchemaType<typeof colorSchema> & {
+    _id:string,
+};
 
 export const ColorModel = mongoose.models.Color ||
     mongoose.model("Color",colorSchema);

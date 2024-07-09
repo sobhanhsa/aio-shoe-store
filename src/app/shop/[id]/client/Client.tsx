@@ -5,7 +5,7 @@ import ColorSelect from "@/components/productSinglePage/colorSelect/ColorSelect"
 import SizeSelect from "@/components/productSinglePage/sizeSelect/SizeSelect";
 
 import styles from "../singleShoe.module.css"
-import { ShoeType } from "@/utils/db/shoe/model";
+import { ProductType } from "@/utils/db/product/model";
 import Stars from "@/components/stars/Stars";
 import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
 import { useEffect, useState } from "react";
@@ -20,25 +20,27 @@ import { useAddToCart } from "@/hooks/useAddToCart";
 
 
 const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
-    const shoe : ShoeType = JSON.parse(stringedShoe);
-    const prices = (shoe.prices.map(p => p.price))
+    const product : ProductType = JSON.parse(stringedShoe);
+    const prices = (product.prices.map(p => p))
         .toSorted((a,b) => a - b);
     const [currentPrice,setCurrentPrice] = useState(prices[0]);
-    const [selectedColor,setSelectedColor] = useState(shoe.colors[0].color.name);
-    const [selectedSize,setSelectedSize] = useState(shoe.sizes[0].size);
+    const [selectedColor,setSelectedColor] = useState(
+        product.colors[0].color.name
+    );
+    const [selectedSize,setSelectedSize] = useState(product.sizes[0].size);
     const [currentQuantity,setCurrentQuantity] = useState(1);
 
-    const [colors,setColors] = useState(shoe.colors);
+    const [colors,setColors] = useState(product.colors);
 
     useEffect(() => {
-        const price = shoe.prices.find(
+        const price = product.prices.find(
             p => {
                 return(
                     p.sizes.find(s => s.size === selectedSize)
                 )
             }
         );
-        price && setColors(shoe.colors.filter(color=>{
+        price && setColors(product.colors.filter(color=>{
             return price.colors.find(priceC => priceC.colorName === color.color.name)
         }) as any)
     },[selectedSize])
@@ -50,7 +52,7 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
     },[colors])
 
     useEffect(() => {
-        const price = shoe.prices.find(
+        const price = product.prices.find(
             p => {
                 // console.log(p);
                 return(
@@ -68,7 +70,7 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
         <div className={styles.infoContainer}>
             <div className={styles.status}>
                 <p className={styles.title}>
-                    {shoe.name}
+                    {product.name}
                 </p>
                 <div className={styles.reviewCount}>
                     <Stars count={5} activeStars={4}/>
@@ -88,7 +90,7 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
                 setSelectedColor={setSelectedColor}
                 />
             <SizeSelect
-                sizes={shoe.sizes}
+                sizes={product.sizes}
                 selectedSize={selectedSize}
                 setSelectedSize={setSelectedSize}
             />
@@ -123,8 +125,8 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
                 </div>
             </div>
             <Details 
-                desc={shoe.desc}
-                dimenstions={shoe.dimenstions}
+                desc={product.description.longDesc}
+                dimenstions={product.dimensions}
                 reviews={null}
             />
         </div>

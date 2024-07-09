@@ -1,6 +1,6 @@
 import { findShoe } from "@/utils/db/product/data";
 import styles from "./singleShoe.module.css"
-import { ShoeType } from "@/utils/db/shoe/model";
+import { ProductType } from "@/utils/db/product/model";
 import Image from "next/image";
 import { ProductImageSwiper } from "@/components/productImageSwiper/ProductImageSwiper";
 import Stars from "@/components/stars/Stars";
@@ -11,20 +11,21 @@ import Details from "@/components/details/Details";
 import SimilarItems from "@/components/similarItems/SimilarItems";
 import SingleShoeClient from "./client/Client";
 
-const  SingleShoePage = async({params}:{
+const  SingleProductPage = async({params}:{
     params:{
         id:string
     }
 }) => {
-    const shoe : ShoeType = await findShoe(params.id);
+    const product : ProductType = {} as any;
     return (
         <div className={styles.container}>
             <div className={styles.product}>
                 <div className={styles.swiperContainer}>
                     <ProductImageSwiper 
-                        images={shoe.images.map(i => i.image)}/>
+                        images={product.images.map(i => i.image)}
+                    />
                 </div>
-                <SingleShoeClient shoe={JSON.stringify(shoe)}/>
+                <SingleShoeClient shoe={JSON.stringify(product)}/>
                 {/* <div className={styles.infoContainer}>
                     <div className={styles.status}>
                         <p className={styles.title}>
@@ -88,4 +89,4 @@ const  SingleShoePage = async({params}:{
     )
 };
 
-export default SingleShoePage;
+export default SingleProductPage;

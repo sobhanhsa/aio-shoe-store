@@ -1,3 +1,4 @@
+import { ColorType } from "@/utils/db/color/model";
 import styles from "./colorSelect.module.css";
 
 const ColorSelect  = ({
@@ -6,7 +7,7 @@ const ColorSelect  = ({
     setSelectedColor
 }:{
     selectedColor : string,
-    colors: Array<{color:{color:string,name:string}}>,
+    colors: Array<ColorType>,
     setSelectedColor : (c:string)=>void
 }) => {
     return (
@@ -21,11 +22,14 @@ const ColorSelect  = ({
                     colors.map((c) => {
                         return (
                             <div 
-                                key={c.color.color}
+                                key={c._id}
                                 className={`${styles.color} 
-                                    ${c.color.name === selectedColor ? styles.colorSelected : ""}`
+                                    ${c.title === selectedColor 
+                                        ? styles.colorSelected
+                                        : ""
+                                    }`
                                 }
-                                style={{backgroundColor:c.color.color}}
+                                style={{backgroundColor:c?.value}}
                                 onClick={() => setSelectedColor(c.color.name)}
                             ></div>
                         )

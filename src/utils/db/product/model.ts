@@ -1,4 +1,7 @@
 import mongoose, { InferSchemaType, Schema } from "mongoose";
+import { ColorType } from "../color/model";
+import { CategoryType } from "../category/model";
+import { SizeType } from "../size/model";
 
 
 const productSchema = new Schema({
@@ -75,14 +78,18 @@ const productSchema = new Schema({
         ]
     },
     description:{
-        shortDesc:{
-            type:String,
-            required:true
+        type:{
+
+            shortDesc:{
+                type:String,
+                required:true
+            },
+            longDesc:{
+                type:String,
+                required:true
+            }
         },
-        longDesc:{
-            type:String,
-            required:true
-        }
+        required:true
     },
     material:{
         required:true,
@@ -113,7 +120,10 @@ const productSchema = new Schema({
 // _id:string
 // };
 export type ProductType = InferSchemaType<typeof productSchema> & {
-_id:string
+    _id:string,
+    sizes:string[]|SizeType[],
+    colors:string[]|ColorType[],
+    category:string|CategoryType,
 };
 
 // export const ShoeModel = mongoose.models.Shoe || mongoose.model("Shoe",productSchema);
