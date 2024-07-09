@@ -16,6 +16,9 @@ export const GET = async(req:NextRequest,
 )=>{
     try {
 
+        const includeDesc : string | null = req
+            .nextUrl.searchParams.get("includeDesc");
+
         // intrested properties for populations
 
         const rawIntrestedProperties : string | null = req
@@ -33,7 +36,9 @@ export const GET = async(req:NextRequest,
 
         await connectToDB();
 
-        const product = await ProductModel.findById(params.id);
+        const product = await ProductModel
+            .findById(params.id)
+            .select(includeDesc ? "" : "-description");
 
         if (!product) {
             return NextResponse.json({
@@ -63,7 +68,7 @@ export const GET = async(req:NextRequest,
     }
 }
 
-const zBody = zProductDto.optional();
+const zBody = zProductDto.partial();
 
 type bodyType = z.infer<typeof zBody>;
 
