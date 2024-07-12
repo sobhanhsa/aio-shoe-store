@@ -7,6 +7,7 @@ import { ProductType } from "@/utils/db/product/model"
 import ProductCard from "@/components/product-card/ProductCard"
 import { useState } from "react"
 import { useFilterProducts } from "@/hooks/useFilterProducts"
+import { LoadingProducts } from "@/components/loading/LoadingProducts"
 
 
 export const ShopPageClient = (
@@ -17,6 +18,8 @@ export const ShopPageClient = (
         serverSideProducts
     );
     
+    const {isLoading,fetcher} = useFilterProducts(setProducts);    
+
     
     return (
         <div className={styles.container}>
@@ -26,6 +29,11 @@ export const ShopPageClient = (
             <div className={styles.main}>
                 <SortSelect/>
                 <div className={styles.products}>
+                    {
+                        isLoading && (
+                            <LoadingProducts/>
+                        )
+                    }
                     {
                         products.map((shoe:ProductType) => {
                         return (
