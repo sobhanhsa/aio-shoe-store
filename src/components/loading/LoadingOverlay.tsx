@@ -1,6 +1,6 @@
-import styles from "./loadingProducts.module.css"
+import styles from "./loadingOverlay.module.css"
 
-export const LoadingProducts = () => {
+export const LoadingOverlay = () => {
     return (
         <div className={styles.container}>
             <span className={styles.loader}></span>

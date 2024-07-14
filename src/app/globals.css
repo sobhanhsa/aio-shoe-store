@@ -17,6 +17,37 @@ button {
   
 }
 
+.wrapper {
+  padding: 80px 165px;
+
+}
+
+@media screen and (max-width:1536px) {
+  .wrapper {
+    padding: 60px 120px;
+  }
+}
+
+@media screen and (max-width:1024px) {
+  .wrapper {
+    padding: 30px 60px;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .wrapper {
+    padding: 10px 20px;
+  }
+}
+
+.rs-slider-progress-bar {
+  background-color: var(--primary) !important;
+}
+
+.rs-slider-handle {  
+  border: 1px solid var(--primary);
+}
+
 :root {
   --text:#2d0800;
   --textSoft:#58342d;

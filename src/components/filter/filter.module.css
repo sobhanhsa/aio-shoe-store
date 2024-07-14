@@ -1,6 +1,15 @@
 .container {
+
+    min-height:100vh;
+
     display: flex;
     flex-direction: column;
+    
+    position: sticky;
+
+    top: 0;
+    left: 0;
+
     gap: 30px;
 }
 
@@ -10,5 +19,13 @@
 }
 
 .line {
-    width: 75%;
+    width: 100%;
+}
+
+.button {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+
 }

@@ -1,56 +1,121 @@
-import ColorSelect from "@/components/colorSelect/ColorSelect";
-import FilterSelect from "@/components/filterSelect/FilterSelect";
-import styles from "./filter.module.css"
+"use client"
 
-const  Filter = () => {
+import { useFilterPropsStore } from "@/stores/filterPropsStore";
+import styles from "./filter.module.css"
+import { useGetFilterProps } from "@/hooks/useGetFilterProps";
+import { useEffect, useState } from "react";
+import { LoadingOverlay } from "../loading/LoadingOverlay";
+import FilterSelect from "../filterSelect/size/SizeFilterSelect";
+import { SizeType } from "@/utils/db/size/model";
+import SizeFilterSelect from "../filterSelect/size/SizeFilterSelect";
+import ColorFilterSelect from "../filterSelect/color/ColorFilterSelect";
+import { PriceFilterSelect } from "../filterSelect/price/PriceFilterSelect";
+import { useFilterStore } from "@/stores/filterStore";
+
+const  Filter = ({
+    productsFetcher
+}:{
+    productsFetcher:(url?:string,filter?:string)=>void
+}) => {
+
+    const [isLoading,setIsLoading] = useState(true);
+
+    
+    // filter props store !== filter store
+    
+    const store = useFilterPropsStore();
+    
+    useEffect(() => {
+        useGetFilterProps(store,setIsLoading);
+    },[]);
+    
+    const filterStore = useFilterStore();
+
+    console.log("filter : ",filterStore.filter);
+    
+
+    const onApply = () => {
+
+        //clone filter object (with changing refrence)
+        const filter = structuredClone(filterStore.filter);
+
+        // a ution type consist of keys type
+        type keys = keyof typeof filter;
+
+        // delete properites that theire $in prop is empty
+        Object.entries(filter).forEach(([prop,value],i)=>{
+            if ((value as any)?.$in?.length === 0 || value===undefined) {
+                console.log("passed key : ",prop);
+                delete filter[prop as keys]
+            }
+        })
+
+        console.log("final filter",filter);
+        
+
+        const stringifiedFilter : string = JSON.stringify(filter);
+    
+
+        productsFetcher(undefined,stringifiedFilter);
+
+    }
+
     return (
         <div className={styles.container}>
+
+            {
+                isLoading && (
+                    <LoadingOverlay/>
+                )
+            }
+
             <p className={styles.quantity}>
                 نشان دادن n ایتم
             </p>
             <hr className={styles.line} />
-            <FilterSelect 
-                name="cat"
-                title="دسته بندی" 
-                items={[
-                    {
-                        title:"مردانه",
-                        value:"مردانه"
-                    },{
-                        title:"زنانه",
-                        value:"زنانه"
-                    }
-                ]}
-            />
-            <hr className={styles.line} />
-            <FilterSelect
-                name="range"
-                title="بازه قیمت" 
-                items={[
-                    {title:"0 - 150,000",value:"0-150000"},
-                    {title:"150,000 - 300,000",value:"150000-300000"},
-                    {title:"600,000 - 900,000",value:"600000-900000"},
-                    {title:"900,000 - 1,200,000",value:"900000-120000"},
-                    {title:"1,200,000 - 1,800,000",value:"1200000-1800000"},
-                    {title:"1,800,000 - به بالا",value:"1800000-inf"},
-                ]}
-            />
-            <hr className={styles.line} />
-            <ColorSelect title="رنگ" 
-                colors={[
-                    "FFFFFF",
-                    "C69B7B",
-                ]}
-            />
-            <hr className={styles.line} />
-            <FilterSelect 
-                name="material"
-                title="جنس" 
-                items={[
-                    {title:"چرم",value:"leather"},
-                    {title:"کتونی",value:"ketone"},
-                ]}
-            />
+            {
+                Object.entries(store.props).map((e)=>{
+
+                    const property = e[0];
+
+                    const items = e[1];
+                    
+                    if (property === "colors") return (
+                        <ColorFilterSelect 
+                            title="رنگ ها" 
+                            items={items as any[]}
+                        />
+                    )
+
+                    if (property === "sizes") return (
+                        <SizeFilterSelect 
+                            title={`سایز ها`} 
+                            items={items as any[]}
+                        />
+                    )
+
+                    if (property === "prices") return (
+                        <PriceFilterSelect
+                            title="بازه قیمت"
+                            min={0}
+                            max={store.props.prices.max}
+                        />
+                    )
+
+
+                    return (
+                        <>
+                        </>
+                    )
+
+
+                })
+            }
+            <br/>
+            <button className={styles.button} onClick={onApply}
+            >
+                اعمال فیلتر
+            </button>
         </div>
     )
 };

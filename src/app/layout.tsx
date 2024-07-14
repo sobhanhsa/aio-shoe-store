@@ -23,13 +23,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <ToastProvider>
           <div className="container">
-            <div className="wrapper">
               <ServerAuthProvider>
-                  <Navbar />
+                <Navbar />
+                  <div className="wrapper">
                     {children}
-                  <Footer />
+                  </div>
+                <Footer />
               </ServerAuthProvider>
-            </div>
           </div>
         </ToastProvider>
       </body>

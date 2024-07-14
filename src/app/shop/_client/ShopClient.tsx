@@ -7,7 +7,7 @@ import { ProductType } from "@/utils/db/product/model"
 import ProductCard from "@/components/product-card/ProductCard"
 import { useState } from "react"
 import { useFilterProducts } from "@/hooks/useFilterProducts"
-import { LoadingProducts } from "@/components/loading/LoadingProducts"
+import { LoadingOverlay } from "@/components/loading/LoadingOverlay"
 
 
 export const ShopPageClient = (
@@ -24,18 +24,18 @@ export const ShopPageClient = (
     return (
         <div className={styles.container}>
             <div className={styles.filterWrapper}>
-                <Filter />
+                <Filter productsFetcher={fetcher}/>
             </div>
             <div className={styles.main}>
                 <SortSelect/>
                 <div className={styles.products}>
                     {
                         isLoading && (
-                            <LoadingProducts/>
+                            <LoadingOverlay/>
                         )
                     }
                     {
-                        products.map((shoe:ProductType) => {
+                        products?.map((shoe:ProductType) => {
                         return (
                             <ProductCard
                             key={shoe._id}

@@ -8,7 +8,7 @@ export const GET = async(
     try {
 
         const query : {} = JSON.parse(
-            req.nextUrl.searchParams.get("q")?.toString() ?? "{}"
+            req.nextUrl.searchParams.get("filter")?.toString() ?? "{}"
         );
 
         console.log("query : ",query);
@@ -47,19 +47,6 @@ export const GET = async(
         .get("populate") && intrestedProperties && true;
 
         await connectToDB();
-
-        let products = [];
-        
-        // if (shouldPopulate) {
-        //     products = await ProductModel
-        //         .find({})
-        //         .populate(intrestedProperties)
-        //         .select("-description");
-        // }else{
-        //     products = await ProductModel
-        //         .find({})
-        //         .select("-description");
-        // }   
         
         // temp raw async query 
         
@@ -71,7 +58,7 @@ export const GET = async(
             temp.populate(intrestedProperties);
         }
 
-        products = await temp.exec()
+        const products = await temp.exec()
 
         return NextResponse.json({
             message:"success",

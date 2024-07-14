@@ -15,12 +15,8 @@ const fetcher = async(
 
 const  ShopPage = async() => {
 
-    const products : ProductType[] = await fetcher();
-
-    console.log("server : ",products);
+    const products : ProductType[] = await fetcher();    
     
-
-
     return (
         <>
             <ShopPageClient products={products}/>

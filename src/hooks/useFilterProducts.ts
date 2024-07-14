@@ -7,19 +7,31 @@ import { useState } from "react"
 
 
 export const useFilterProducts = (setProducts:Function) => {
+
     const [isLoading,setIsLoading] = useState<Boolean>(false);
-    
+
     const fetcher = async(
         url=process.env.NEXT_PUBLIC_API_URL+"products/product/all",
-        q?:string
+        filter?:string
     )=>{
 
         try {
             
             setIsLoading(true);
             
+            console.log("filter",filter);
+            
+
+            const finalUrl = new URL(url);
+            
+            if (filter) {
+                finalUrl.searchParams.append(
+                    "filter",filter||"{}"
+                );
+            }
+
             const res = await fetch(
-                url
+                finalUrl.toString()
             );
         
             const body = await res.json();
