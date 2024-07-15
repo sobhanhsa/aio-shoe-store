@@ -36,8 +36,6 @@ export const ServerAuthProvider = async({children}:{children:ReactNode}) => {
 
     //send it to client provider
 
-    console.log("providers ServerAuthProvider user : ",user);
-
     //note : user || null means if user was a falsy return null
 
     return (

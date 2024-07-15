@@ -126,5 +126,11 @@ export type ProductType = InferSchemaType<typeof productSchema> & {
     category:string|CategoryType,
 };
 
+export type PopulatedProductType = ProductType & {
+    colors:ColorType[],
+    sizes:SizeType[],
+    category:CategoryType,
+}
+
 // export const ShoeModel = mongoose.models.Shoe || mongoose.model("Shoe",productSchema);
 export const ProductModel = mongoose.models.Product || mongoose.model("Product",productSchema);

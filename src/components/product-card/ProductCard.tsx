@@ -34,8 +34,8 @@ const  ProductCard = (params:ProductCardParams) => {
             commaEmbedder(lowestPrice)+"-"+commaEmbedder(highestPrice)
 
     return (
-        <div className={styles.container}>
-            <Link href={"/shop/"+params.id} key={params.id}>
+        <div className={styles.container} key={params.id}>
+            <Link href={"/shop/"+params.id}>
                 <div className={styles.imageContainer}>
                     <Image 
                         className={styles.image}
@@ -73,9 +73,9 @@ const  ProductCard = (params:ProductCardParams) => {
                 </div>
             </Link> 
             <AddToCartButton 
-                colorName={params.colors[0].title} 
-                size={params.sizes[0].value} 
-                productId={params.id}
+                colorId={params.colors[0]._id} 
+                sizeId={params.sizes[0]._id} 
+                product={params.id}
             />
         </div>
     )

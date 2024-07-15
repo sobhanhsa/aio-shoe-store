@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   title: "shoe store",
 };
 
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -22,15 +24,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ToastProvider>
-          <div className="container">
-              <ServerAuthProvider>
-                <Navbar />
-                  <div className="wrapper">
-                    {children}
-                  </div>
-                <Footer />
-              </ServerAuthProvider>
-          </div>
+          <ServerAuthProvider>
+            <Navbar />
+              <div className="container">
+                {children}
+              </div>
+            <Footer />
+          </ServerAuthProvider>
         </ToastProvider>
       </body>
     </html>

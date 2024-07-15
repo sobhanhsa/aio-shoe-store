@@ -1,14 +1,14 @@
-import { findShoes } from "@/utils/db/product/data";
+import { PopulatedProductType } from "@/utils/db/product/model";
 import styles from "./latestProducts.module.css"
 import ProductCard from "@/components/product-card/ProductCard";
-import { ShoeType } from "@/utils/db/shoe/model";
 
-const LatestProducts  = async() => {
+const LatestProducts  = async({
+    products
+}:{
+    products:PopulatedProductType[]
+}) => {
 
-    //find latest shoes
-    let shoes = await findShoes();
-    shoes.push(...shoes)
-    shoes.push(...shoes)
+
 
     return (
         <div className={styles.container} >
@@ -17,17 +17,17 @@ const LatestProducts  = async() => {
             </p>
             <div className={styles.products}>
                 {
-                shoes.map((shoe:ShoeType) => {
+                products.map((product) => {
                     return (
                         <ProductCard
-                        id={shoe._id}
-                        name={shoe.name}
-                        brand={shoe.brand}
-                        colors={shoe.colors}
-                        image={shoe.images[0].image}
-                        sizes={shoe.sizes}
-                        prices={shoe.prices.map(p => p.price)}
-                        tumbDesc={shoe.desc.substring(0,55)}
+                        id={product._id}
+                        name={product.name}
+                        brand={product.brand}
+                        colors={product.colors}
+                        image={product.images[0].image}
+                        sizes={product.sizes}
+                        prices={product.prices}
+                        tumbDesc={product.description.shortDesc.substring(0,55)}
                         />
                     )
                 })

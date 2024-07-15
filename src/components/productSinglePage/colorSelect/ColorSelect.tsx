@@ -6,31 +6,34 @@ const ColorSelect  = ({
     colors,
     setSelectedColor
 }:{
-    selectedColor : string,
-    colors: Array<ColorType>,
-    setSelectedColor : (c:string)=>void
+    selectedColor : ColorType,
+    colors: ColorType[],
+    setSelectedColor : (c:ColorType)=>void
 }) => {
     return (
         <div className={styles.container}>
             <p>رنگ:
-                <span style={{
-                    color:"#826F66"
-                }}>{selectedColor}</span>
+                <span className={styles.title} style={{
+                    color:`${selectedColor.value}`
+                }}>{selectedColor.title}</span>
             </p>
             <div className={styles.colors}>
                 {
-                    colors.map((c) => {
+                    colors?.map((c) => {
                         return (
                             <div 
                                 key={c._id}
-                                className={`${styles.color} 
-                                    ${c.title === selectedColor 
-                                        ? styles.colorSelected
-                                        : ""
-                                    }`
+                                className={
+                                    `
+                                        ${styles.color} 
+                                        ${c.title === selectedColor.title 
+                                            ? styles.colorSelected
+                                            : ""
+                                        }
+                                    `
                                 }
-                                style={{backgroundColor:c?.value}}
-                                onClick={() => setSelectedColor(c.color.name)}
+                                style={{backgroundColor:c.value||"transparent"}}
+                                onClick={() => setSelectedColor(c)}
                             ></div>
                         )
                     })

@@ -5,7 +5,7 @@ import ColorSelect from "@/components/productSinglePage/colorSelect/ColorSelect"
 import SizeSelect from "@/components/productSinglePage/sizeSelect/SizeSelect";
 
 import styles from "../singleShoe.module.css"
-import { ProductType } from "@/utils/db/product/model";
+import { PopulatedProductType, ProductType } from "@/utils/db/product/model";
 import Stars from "@/components/stars/Stars";
 import { commaEmbedder } from "@/utils/priceConventor/priceConventor";
 import { useEffect, useState } from "react";
@@ -17,54 +17,27 @@ import { CartItemType } from "@/utils/db/cartItem/model";
 import {Types} from "mongoose";
 import { toast } from "react-toastify";
 import { useAddToCart } from "@/hooks/useAddToCart";
+import { SizeType } from "@/utils/db/size/model";
+import { ColorType } from "@/utils/db/color/model";
 
 
-const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
-    const product : ProductType = JSON.parse(stringedShoe);
-    const prices = (product.prices.map(p => p))
-        .toSorted((a,b) => a - b);
-    const [currentPrice,setCurrentPrice] = useState(prices[0]);
-    const [selectedColor,setSelectedColor] = useState(
-        product.colors[0].color.name
+const SingleProductClient  = ({product:stringedProduct}:{product:string}) => {
+
+    // populated product !
+    const product : PopulatedProductType = JSON.parse(stringedProduct);
+
+    const [selectedSize,setSelectedSize] = useState<SizeType>(
+        product.sizes[0]
     );
-    const [selectedSize,setSelectedSize] = useState(product.sizes[0].size);
+
+    const [selectedColor,setSelectedColor] = useState<ColorType>(
+        product.colors[0]
+    );
+
     const [currentQuantity,setCurrentQuantity] = useState(1);
 
-    const [colors,setColors] = useState(product.colors);
-
-    useEffect(() => {
-        const price = product.prices.find(
-            p => {
-                return(
-                    p.sizes.find(s => s.size === selectedSize)
-                )
-            }
-        );
-        price && setColors(product.colors.filter(color=>{
-            return price.colors.find(priceC => priceC.colorName === color.color.name)
-        }) as any)
-    },[selectedSize])
-
-    useEffect(() => {
-        setSelectedColor(prevC => {
-            return colors.find(c => c.color.name === prevC) ? prevC : colors[0].color.name
-        })
-    },[colors])
-
-    useEffect(() => {
-        const price = product.prices.find(
-            p => {
-                // console.log(p);
-                return(
-                    p.colors.find(c => c.colorName === selectedColor) 
-                    && 
-                    p.sizes.find(s => s.size === selectedSize)
-                )
-        }
-        );
-        // console.log(price)
-        price?.price && setCurrentPrice(price.price);
-    },[selectedSize,selectedColor])
+    
+    const currentPrice = product.prices[0];
 
     return (
         <div className={styles.infoContainer}>
@@ -85,10 +58,10 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
                 </p>
             </div>
             <ColorSelect
-                colors={colors}
+                colors={product.colors}
                 selectedColor={selectedColor}
                 setSelectedColor={setSelectedColor}
-                />
+            />
             <SizeSelect
                 sizes={product.sizes}
                 selectedSize={selectedSize}
@@ -109,10 +82,10 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
                 <div className={styles.addCart} 
                     onClick={useAddToCart.bind({
                         quantity:currentQuantity,
+                        product:product._id,
                         spec:{
-                            productId:shoe._id,
-                            colorName:selectedColor,
-                            size:selectedSize
+                            color:selectedColor._id,
+                            size:selectedSize._id
                         }
                     })}>
                     افزودن به سبد خرید  
@@ -133,4 +106,4 @@ const SingleShoeClient  = ({shoe:stringedShoe}:{shoe:string}) => {
     )
 };
 
-export default SingleShoeClient;
+export default SingleProductClient;

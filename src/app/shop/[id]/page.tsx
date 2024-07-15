@@ -1,31 +1,47 @@
-import { findShoe } from "@/utils/db/product/data";
+import { findProductById } from "@/utils/db/product/data";
 import styles from "./singleShoe.module.css"
 import { ProductType } from "@/utils/db/product/model";
-import Image from "next/image";
 import { ProductImageSwiper } from "@/components/productImageSwiper/ProductImageSwiper";
-import Stars from "@/components/stars/Stars";
-import { AiOutlineMinus } from "react-icons/ai";
-import { MdOutlineAdd } from "react-icons/md";
-import { FaRegHeart } from "react-icons/fa6";
-import Details from "@/components/details/Details";
 import SimilarItems from "@/components/similarItems/SimilarItems";
-import SingleShoeClient from "./client/Client";
+import SingleProductClient from "./_client/Client";
+import { redirect } from "next/navigation";
+
+const fetcher = async(
+    url=process.env.NEXT_PUBLIC_API_URL+"/products/product/",
+    id:string
+) => {  
+    
+    const finalUrl = `${url}${id}?populate=y`;
+
+    const res = await fetch(finalUrl,{
+        cache:"no-store"
+    });
+    
+    return res.json();
+
+}
 
 const  SingleProductPage = async({params}:{
     params:{
         id:string
     }
 }) => {
-    const product : ProductType = {} as any;
+
+    const product : ProductType = (await fetcher(undefined,params.id))?.product;        
+
+    if (!product) {
+        redirect("/404");
+    }
+
     return (
         <div className={styles.container}>
             <div className={styles.product}>
                 <div className={styles.swiperContainer}>
                     <ProductImageSwiper 
-                        images={product.images.map(i => i.image)}
+                        images={product.images?.map(i => i.image)}
                     />
                 </div>
-                <SingleShoeClient shoe={JSON.stringify(product)}/>
+                <SingleProductClient product={JSON.stringify(product)}/>
                 {/* <div className={styles.infoContainer}>
                     <div className={styles.status}>
                         <p className={styles.title}>

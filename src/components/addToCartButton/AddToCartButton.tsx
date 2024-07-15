@@ -6,16 +6,18 @@ import { useAddToCart } from "@/hooks/useAddToCart";
 
 
 interface addToCartButtonParams {
-    productId:string
-    colorName:string
-    size:number
+    product:string
+    colorId:string
+    sizeId:string
 }
 
 const  AddToCartButton = (params:addToCartButtonParams) => {
     return (
         <button className={styles.addButton} onClick={useAddToCart.bind({
+            product:params.product,
             spec:{
-                ...params
+                color:params.colorId,
+                size:params.sizeId
             },
             quantity:1
         })}>

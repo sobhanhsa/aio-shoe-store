@@ -8,10 +8,24 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { finalCartItem } from "@/utils/db/cartItem/data";
 import { useDebounce, useDebouncedCallback } from "use-debounce";
+import { CartItemType, PopulatedCartItemType } from "@/utils/db/cartItem/model";
+import { IoMdColorPalette } from "react-icons/io";
+import { ImEnlarge2 } from "react-icons/im";
+import Link from "next/link";
 
-const  CartItem = ({c,mutate}:{c:finalCartItem,mutate:()=>void}) => {
+const  CartItem = (
+    {
+        c,
+        mutate
+    }:{
+        c:PopulatedCartItemType,
+        mutate:()=>void
+    }
+) => {
+
     const [currentQuantity,setCurrentQuantity] = useState(c.quantity);
     const [fixedCurrentQuantity] = useDebounce(currentQuantity,1500);
+    
     useEffect(() => {
         fetch(process.env.NEXT_PUBLIC_API_URL+"cart/"+c._id+"?quantity="+fixedCurrentQuantity,{
             method:"PATCH"
@@ -19,7 +33,8 @@ const  CartItem = ({c,mutate}:{c:finalCartItem,mutate:()=>void}) => {
         .then((res) => {
             mutate()
         })
-    },[fixedCurrentQuantity])
+    },[fixedCurrentQuantity]);
+
     const handleDelete = () => {
         fetch(process.env.NEXT_PUBLIC_API_URL+"cart/"+c._id,{
             method:"DELETE"
@@ -27,30 +42,53 @@ const  CartItem = ({c,mutate}:{c:finalCartItem,mutate:()=>void}) => {
         .then((res) => {
             mutate()
         })
-    }
+    };
+    
     return (
         <div className={styles.container} key={c._id}>
             <div className={styles.delete} onClick={handleDelete}>
                 <AiOutlineClose style={{cursor:"pointer"}} size={20} color="red"/>
             </div>
             <div className={styles.imageContainer}>
-                <Image
-                    src={c.product.images[0].image}
-                    alt=""
-                    fill
-                />
+                <Link href={`/shop/${c.product._id}`}>
+                    <Image
+                        src={c.product.images[0].image}
+                        alt=""
+                        fill
+                    />
+                </Link>
             </div>
+            
             <div className={styles.product}>
                 <p className={styles.prodcutTitle}>
-                    {c.product.name}
+                    <Link href={`/shop/${c.product._id}`}>
+                        {c.product.name}
+                    </Link>
                 </p>
                 <div className={styles.prodcutSpecs}>
-                    <p className={styles.prodcutSpec}>{c.spec.colorName}</p>
-                    <p className={styles.prodcutSpec}>{c.spec.size}</p>
+                    <p 
+                        className={styles.prodcutSpec}
+                        style={{
+                            backgroundColor:c.spec.color.value||"black"
+                        }}    
+                    >
+                        <IoMdColorPalette className={styles.icon} 
+                            size={20}
+                            color={c.spec.color.value || "green"}
+                        />
+                        {c.spec.color.title}
+                    </p>
+                    <p className={styles.prodcutSpec}>
+                        <ImEnlarge2 className={styles.icon} 
+                            size={20}
+                            color="black"
+                        />
+                        {c.spec.size.title}
+                    </p>
                 </div>
             </div>
             <p className={styles.price}>
-                {commaEmbedder(c.price)}
+                {commaEmbedder(c.product.prices[0])}
             </p>
             <div className={styles.quantity}>
                 <button onClick={() => {setCurrentQuantity((p) => {
@@ -64,7 +102,7 @@ const  CartItem = ({c,mutate}:{c:finalCartItem,mutate:()=>void}) => {
                 </button>
             </div>
             <p className={styles.subTotal}>
-                {commaEmbedder(c.price * currentQuantity)}
+                {commaEmbedder(c.product.prices[0] * currentQuantity)}
             </p>
         </div>
     )

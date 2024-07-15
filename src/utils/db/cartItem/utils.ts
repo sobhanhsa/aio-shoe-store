@@ -1,5 +1,12 @@
 import { CartItemType } from "./model";
 
-export const slugMaker = (spec:CartItemType["spec"]) => {
-    return `${spec.userId}${spec.productId}${spec.colorName}${spec.size}`
+export const slugMaker = ({
+    userId,productId,colorId,sizeId
+}:{
+    userId:string,
+    productId:string,
+    colorId:string,
+    sizeId:string,
+}) => {
+    return `${userId}${productId}${colorId}${sizeId}`
 }

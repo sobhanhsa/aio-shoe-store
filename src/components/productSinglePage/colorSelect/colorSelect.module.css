@@ -16,6 +16,8 @@
     cursor: pointer;
     width: 36px;
     height: 36px;
+
+    border: 2px solid black;
 }
 
 .colorSelected {
@@ -26,4 +28,9 @@
 .color:hover {
     outline: 1px solid black;
     outline-offset: 6px;
+}
+
+.title {
+    background-color: var(--bgSoft);
+    padding: 2px 3px;
 }

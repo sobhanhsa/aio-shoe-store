@@ -1,6 +1,4 @@
 .container {
-    
-    padding: 0 165px;
 }
 
 .content {
@@ -44,3 +42,28 @@
     border-bottom: 1px solid black;
 }
 
+@media screen and (max-width:1024px) {
+    .textContainer {
+        width: 100%;
+        padding: 20px 32px;
+    }
+
+    .content {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    .desc{
+        font-size: 12px;
+        max-height: fit-content;
+    }
+
+    .imageContainer {
+        width: 100%;
+        max-height: unset;
+        height: unset;
+        aspect-ratio: 1/1;
+        position: relative;
+    }
+    
+}

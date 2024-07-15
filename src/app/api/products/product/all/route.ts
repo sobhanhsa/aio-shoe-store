@@ -2,6 +2,12 @@ import { ProductModel } from "@/utils/db/product/model";
 import { connectToDB } from "@/utils/db/utils";
 import { NextRequest, NextResponse } from "next/server";
 
+const POPULATED_FIELDS = [
+    "sizes",
+    "colors",
+    "category"
+]
+
 export const GET = async(
     req:NextRequest,
 )=>{
@@ -10,8 +16,6 @@ export const GET = async(
         const query : {} = JSON.parse(
             req.nextUrl.searchParams.get("filter")?.toString() ?? "{}"
         );
-
-        console.log("query : ",query);
         
 
         /*
@@ -34,28 +38,33 @@ export const GET = async(
 
         */
 
-        const rawIntrestedProperties : string | null = req
-        .nextUrl.searchParams.get("instrests");
-        
-        
-        const intrestedProperties = rawIntrestedProperties?.split(",");
-        
         /*if was null assign it to false 
         & if it wasn't falsy assign it to true*/
         
         const shouldPopulate = req.nextUrl.searchParams
-        .get("populate") && intrestedProperties && true;
+        .get("populate") && true;
+
+        const page = Number(
+            req.nextUrl.searchParams.get("page") || 1
+        ); 
+        
+        const postsPerPage = Number(
+            req.nextUrl.searchParams.get("perPage")
+            ||
+            process.env.postsPerPage
+        ); 
 
         await connectToDB();
         
         // temp raw async query 
         
         const temp = ProductModel
-                .find(query)
-                .select("-description");
+            .find(query)
+            .limit(postsPerPage)
+            .skip(postsPerPage * (page-1));
 
         if (shouldPopulate) {
-            temp.populate(intrestedProperties);
+            temp.populate(POPULATED_FIELDS);
         }
 
         const products = await temp.exec()

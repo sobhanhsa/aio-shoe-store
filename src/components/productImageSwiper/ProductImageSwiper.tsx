@@ -29,7 +29,7 @@ export const ProductImageSwiper = ({
                 modules={[FreeMode, Navigation, Thumbs]}
                 >
                 {
-                    images.map(image => (
+                    images?.map(image => (
                         <SwiperSlide 
                         key={image}>
                             <div className={styles.imageContainer}>
@@ -58,7 +58,7 @@ export const ProductImageSwiper = ({
                 watchSlidesProgress={true}
                 modules={[FreeMode, Navigation, Thumbs]}
             >
-                {images.map(image => (
+                {images?.map(image => (
                     <SwiperSlide 
                         key={image}
                     >

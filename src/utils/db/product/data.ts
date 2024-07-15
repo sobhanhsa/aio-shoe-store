@@ -25,15 +25,15 @@ export const findShoesByFilter = async (query:object) => {
     }
 };
 
-export const findShoe = async (id:string) => {
+export const findProductById = async (id:string) => {
     try {
         await connectToDB();
-        const shoe = await ProductModel.findById({
+        const product = await ProductModel.findById({
             _id:id
         });
-        return shoe
+        return product
     } catch (err:any&Error) {
-        console.log("utils db findShoe-error : ",err.message);
+        console.log("utils db findProductById-error : ",err.message);
         throw err
     }
 }

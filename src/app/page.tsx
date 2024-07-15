@@ -1,46 +1,37 @@
-import ProductCard from "@/components/product-card/ProductCard";
 import styles from "./page.module.css";
-import { ShoeType } from "@/utils/db/shoe/model";
-import { createShoes, findShoes } from "@/utils/db/product/data";
-import Featured from "@/components/featured/Featured";
 import SaleAd from "@/components/saleAd/SaleAd";
 import AboutUs from "@/components/aboutUs/AboutUs";
 import LatestProducts from "@/components/latestProducts/LatestProducts";
 import CategorySwiper from "@/components/categorySwiper/CategorySwiper";
+import { PopulatedProductType, ProductType } from "@/utils/db/product/model";
+import { TopSales } from "@/components/topSales/TopSales";
+import Featured from "@/components/featured/Featured";
+
+const fetcher = async(
+  url=process.env.NEXT_PUBLIC_API_URL+"/products/product/all"
+) => {
+  const res = await fetch(url+"?populate=y&perPage=4",{
+    cache:"no-store"
+  });
+  return res.json();
+}
 
 export default async function Home() {
-  const shoes = await findShoes();
+
+  const {products}:{products:PopulatedProductType[]} = await fetcher();
+  
   return (
     <div className={styles.container}>
       {/* featured */}
       <Featured />
-      <div className={styles.categoryContainer}>
+      
+      <div className={styles.wrapper}>
         <CategorySwiper categories={["مردانه","زنانه"]} />
+        <SaleAd />
+        <TopSales products={products} />
+        <AboutUs />
+        {/* <LatestProducts products={products} /> */}
       </div>
-      <SaleAd />
-      <div className={styles.topSaleContainer}>
-        <p className={styles.title}>پر فروش ترین ها</p>    
-        <div className={styles.products}>
-          {
-            shoes.map((shoe:ShoeType) => {
-              return (
-                <ProductCard
-                  id={shoe._id.toString()}
-                  name={shoe.name}
-                  brand={shoe.brand}
-                  colors={shoe.colors}
-                  image={shoe.images[0].image}
-                  sizes={shoe.sizes}
-                  prices={shoe.prices.map(p => p.price)}
-                  tumbDesc={shoe.thumbDesc.substring(0,55)}
-                />
-              )
-            })
-          }
-        </div>
-      </div>
-      <AboutUs />
-      <LatestProducts />
     </div>
   );
 }

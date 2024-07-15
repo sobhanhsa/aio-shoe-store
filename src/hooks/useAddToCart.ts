@@ -9,23 +9,18 @@ export const fetcher = async(
         method:"POST",
         body:JSON.stringify({
             ...cartItem
-        })
+        }),
+        cache:"no-cache"
     });
     return res
 } 
 
-export const useAddToCart = function(this:{
-    spec:{
-        productId:string,
-        colorName:string,
-        size:number,
-    },
-    quantity:number
-}) {
+export const useAddToCart = async function(this:CartItemDtoType) {
         
     const cart = this;
 
-    const res = fetcher(cart as any);
+    const res = fetcher(cart);
+    
 
     const toastRes = new Promise((resolve,reject) => {
         res.then(
@@ -33,7 +28,16 @@ export const useAddToCart = function(this:{
             // ? reject("duplicated cart item") 
             // : resolve("success")
             (r) => {
-                if (r.status === 401) reject("هنوز وارد حساب کاربری خود نشده اید")
+                if (r.status === 401) reject(
+                    "هنوز وارد حساب کاربری خود نشده اید"
+                    );
+                if (r.status !== 201) reject(
+                    "مشکلی رخ داد !"
+                )
+
+                console.log("code : ",r.status);
+                
+
                 resolve("success")
             }
         )

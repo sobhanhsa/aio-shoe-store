@@ -7,6 +7,13 @@ import { zProductDto } from "@/utils/zod/product";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+const POPULATED_FIELDS = [
+    "colors",
+    "sizes",
+    "category",
+
+];
+
 export const GET = async(req:NextRequest,
     {params}:{
         params:{
@@ -16,29 +23,18 @@ export const GET = async(req:NextRequest,
 )=>{
     try {
 
-        const includeDesc : string | null = req
-            .nextUrl.searchParams.get("includeDesc");
-
-        // intrested properties for populations
-
-        const rawIntrestedProperties : string | null = req
-            .nextUrl.searchParams.get("instrests");
-        
-
-        const intrestedProperties = rawIntrestedProperties?.split(",");
         
         /*if was null assign it to false 
             & if it wasn't falsy assign it to true*/
         
 
         const shouldPopulate = req.nextUrl.searchParams
-            .get("populate") && intrestedProperties && true;
+            .get("populate") && true;
 
         await connectToDB();
 
         const product = await ProductModel
             .findById(params.id)
-            .select(includeDesc ? "" : "-description");
 
         if (!product) {
             return NextResponse.json({
@@ -49,7 +45,7 @@ export const GET = async(req:NextRequest,
         }
 
         if (shouldPopulate) {
-            await product.populate(intrestedProperties);
+            await product.populate(POPULATED_FIELDS);
         }
 
         return NextResponse.json({

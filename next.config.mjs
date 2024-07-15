@@ -10,6 +10,10 @@ const nextConfig = {images:{
             hostname:"swiperjs.com"
         }
     ]
-}};
+},
+    env:{
+        postsPerPage:"9"
+    }
+};
 
 export default nextConfig;
