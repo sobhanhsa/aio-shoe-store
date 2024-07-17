@@ -40,6 +40,12 @@ button {
   }
 }
 
+@media screen and (max-width:440px) {
+  .wrapper {
+    padding: 10px 0px;
+  }
+}
+
 .rs-slider-progress-bar {
   background-color: var(--primary) !important;
 }
@@ -54,7 +60,8 @@ button {
   --bg:#fefefe;
   --bgSoft:rgb(228, 228, 228);
   --primary:#55322c;
-  --brand:crimson
+  --brand:crimson;
+  --neutral800:#19213D;
 }
 @font-face {
   font-family: "TV";
