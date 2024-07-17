@@ -12,7 +12,7 @@ const nextConfig = {images:{
     ]
 },
     env:{
-        postsPerPage:"9"
+        productsPerPage:"9"
     }
 };
 
