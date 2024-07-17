@@ -8,6 +8,31 @@ const POPULATED_FIELDS = [
     "category"
 ]
 
+const postsPerPage = Number(process.env.productsPerPage || 1);
+
+const getSortQuery = (sort:string)=>{
+    switch (sort) {
+        case "newest" :
+            return {
+                createdAt:-1
+            }
+        case "low":
+            return {
+                prices:1
+            }
+        case "hight":
+            return {
+                prices:-1
+            }
+        case "name":
+            return {
+                name:1
+            }
+        default:
+            return null
+    }
+}
+
 export const GET = async(
     req:NextRequest,
 )=>{
@@ -16,31 +41,7 @@ export const GET = async(
         const query : {} = JSON.parse(
             req.nextUrl.searchParams.get("filter")?.toString() ?? "{}"
         );
-        
 
-        /*
-
-        {
-            prices:{
-                $gt:500,
-                $lt:1500,
-            },
-
-            colors:{
-                $all:["...","..."]
-            },
-
-            sizes:{
-                $all:["...","..."]
-            }
-
-        }
-
-        */
-
-        /*if was null assign it to false 
-        & if it wasn't falsy assign it to true*/
-        
         const shouldPopulate = req.nextUrl.searchParams
         .get("populate") && true;
 
@@ -48,20 +49,27 @@ export const GET = async(
             req.nextUrl.searchParams.get("page") || 1
         ); 
         
-        const postsPerPage = Number(
+        const sort = req.nextUrl.searchParams.get("sort"); 
+        
+        let sortQuery = getSortQuery(sort || "newest");
+
+        const productsPerPage = Number(
             req.nextUrl.searchParams.get("perPage")
             ||
-            process.env.postsPerPage
+            process.env.productsPerPage
         ); 
 
         await connectToDB();
         
+
         // temp raw async query 
         
         const temp = ProductModel
             .find(query)
-            .limit(postsPerPage)
-            .skip(postsPerPage * (page-1));
+            .sort((sortQuery || {}) as any)
+            .limit(productsPerPage)
+            .skip(productsPerPage * (page-1));
+
 
         if (shouldPopulate) {
             temp.populate(POPULATED_FIELDS);
@@ -69,9 +77,18 @@ export const GET = async(
 
         const products = await temp.exec()
 
+        const docCount = await ProductModel.find(query).countDocuments();
+
+
+        const pageCount = Math.ceil(
+            docCount/postsPerPage
+        );
+
         return NextResponse.json({
             message:"success",
-            products
+            pageCount,
+            count:products.length,
+            products,
         },{
             status:200
         });
