@@ -25,7 +25,7 @@ const  SizeFilterSelect = ({
             </p>
             {
                 items.map(item => (
-                    <Item item={item} store={store} />
+                    <Item key={item._id} item={item} store={store} />
                 ))
             }
         </div>

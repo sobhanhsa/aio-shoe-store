@@ -27,7 +27,7 @@ const  ColorFilterSelect = ({
             <div className={styles.colors}>
             {
                 items.map(item => (
-                    <Item item={item} store={store} />
+                    <Item key={item._id} item={item} store={store} />
                 ))
             }   
             </div>
@@ -74,7 +74,8 @@ const Item = ({item , store}:{item:ItemType,store:FilterStore}) => {
     }
 
     return (
-        <div className={styles.item} 
+        <div 
+            className={styles.item} 
             key={item._id} 
             onClick={onClick}
         >

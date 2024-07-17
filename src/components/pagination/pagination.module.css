@@ -1,0 +1,43 @@
+.container {
+    padding: 10px 20px;
+
+    display: flex;
+    gap: 10px;
+
+    align-self:self-end;
+
+    direction: ltr;
+}
+
+.button {
+    cursor: pointer;
+
+    padding: 10px;
+    background: transparent;
+}
+
+.button:disabled {
+    cursor:not-allowed;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item {
+    cursor: pointer;
+    
+    color:black;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemCurrent {
+
+    background-color: var(--neutral800);
+    color: var(--bg);
+}

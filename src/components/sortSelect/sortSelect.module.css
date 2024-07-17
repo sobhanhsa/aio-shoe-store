@@ -1,4 +1,8 @@
 .container {
+    background-color: transparent;
+
+    padding: 10px 0;
+
     display: flex;
     justify-content: space-between;
 }
@@ -9,5 +13,32 @@
 }
 
 .select {
+    background-color: transparent;
     border: none;
+}
+
+.select:focus {
+
+    border: none;
+    outline: none;
+}
+
+.select:active{
+
+    /* padding: 10px; */
+
+    background-color: transparent;
+
+    border-radius: 10px;
+}
+
+.option{
+    border: none;
+    border-radius: 10px;
+}
+
+@media screen and (max-width:440px) {
+    .container {
+        justify-content: flex-start;
+    }    
 }

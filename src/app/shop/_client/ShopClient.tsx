@@ -8,24 +8,33 @@ import ProductCard from "@/components/product-card/ProductCard"
 import { useState } from "react"
 import { useFilterProducts } from "@/hooks/useFilterProducts"
 import { LoadingOverlay } from "@/components/loading/LoadingOverlay"
+import { Pagination } from "@/components/pagination/Pagination"
 
 
 export const ShopPageClient = (
-    {products:serverSideProducts}:{products:ProductType[]}
+    {
+        products:serverSideProducts,
+        count,
+        pageCount:serverPageCount
+    }:{
+        products:ProductType[]
+        count:number,
+        pageCount:number,
+    }
 ) => {    
     
     const [products,setProducts]=useState<ProductType[]>(
         serverSideProducts
     );
     
-    const {isLoading,fetcher} = useFilterProducts(setProducts);    
+    const [pageCount,setPageCount]= useState(serverPageCount);
+
+    const {isLoading,fetcher} = useFilterProducts(setProducts,setPageCount);    
 
     
     return (
         <div className={styles.container}>
-            <div className={styles.filterWrapper}>
-                <Filter productsFetcher={fetcher}/>
-            </div>
+            <Filter productsFetcher={fetcher} count={products.length}/>
             <div className={styles.main}>
                 <SortSelect/>
                 <div className={styles.products}>
@@ -53,9 +62,7 @@ export const ShopPageClient = (
                         })
                     }
                 </div>
-            </div>
-            <div className={styles.paginationContainer}>
-
+                <Pagination count={products.length} pageCount={pageCount} />
             </div>
         </div>
     )

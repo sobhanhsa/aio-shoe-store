@@ -14,7 +14,7 @@ const  SortSelect = () => {
 
     function handleChange (e:ChangeEvent & any) {
         const sort = e.target.value;
-        if (param === e.target.value) {
+        if (param === sort) {
             params.delete("sort")
         }else {
             params.set("sort",sort);
@@ -30,10 +30,10 @@ const  SortSelect = () => {
                 name="sort" id="sort"
                 onChange={handleChange}
             >
-                <option value="name">نام</option>
-                <option value="low">ارزان ترین</option>
-                <option value="hight">گران ترین</option>
-                <option value="newest">جدید ترین</option>
+                <option className={styles.option} value="name">نام</option>
+                <option className={styles.option} value="low">ارزان ترین</option>
+                <option className={styles.option} value="hight">گران ترین</option>
+                <option className={styles.option} value="newest">جدید ترین</option>
             </select>   
         </div>
     )
