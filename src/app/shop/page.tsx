@@ -5,21 +5,39 @@ const fetcher = async(
     url=process.env.NEXT_PUBLIC_API_URL+"products/product/all"
 ) => {
     const res = await fetch(
-        url
+        url,{
+            cache:"no-store"
+        }
     );
 
     const body = await res.json();
 
-    return body.products || []
+    return {
+        products:body.products || [],
+        count:body.count,
+        pageCount:body.pageCount
+    }
 }
 
 const  ShopPage = async() => {
 
-    const products : ProductType[] = await fetcher();    
+    const {
+        count,
+        pageCount,
+        products
+    } : {
+        count:number,
+        pageCount:number,
+        products:ProductType[]
+    } = await fetcher();    
     
     return (
         <>
-            <ShopPageClient products={products}/>
+            <ShopPageClient
+                products={products}
+                count={count}
+                pageCount={pageCount}
+            />
         </>
     )
 };
