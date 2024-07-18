@@ -1,6 +1,10 @@
+import { useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 import { DescktopFilter } from "./desktop/DesktopFilter"
 import { MobileFilter } from "./mobile/MobileFilter";
-
+import { useFilterStore } from "@/stores/filterStore";
+import { useGetFilterProps } from "@/hooks/useGetFilterProps";
+import { useFilterPropsStore } from "@/stores/filterPropsStore";
 
 const Filter = (
     {
