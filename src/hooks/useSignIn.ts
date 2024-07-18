@@ -19,10 +19,7 @@ export const useSignIn = async(
             credentials
         ),
         }
-    );
-
-    console.log("hooks useSignIn res : ",res);
-    
+    );    
 
     const body : {message:string,user:UserType} = await res.json();
     

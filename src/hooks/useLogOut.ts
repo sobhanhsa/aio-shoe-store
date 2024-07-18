@@ -8,10 +8,7 @@ import { toast } from "react-toastify";
 export const useLogOut = async(useAuth:stateType) => {
     
     // fetch
-    const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"auth/logout");
-
-    console.log("hooks useLogOut res : ",res);
-    
+    const res = await fetch(process.env.NEXT_PUBLIC_API_URL+"auth/logout");    
 
     // if res was ok change auth status
 

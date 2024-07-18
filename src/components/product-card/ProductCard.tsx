@@ -35,7 +35,7 @@ const  ProductCard = (params:ProductCardParams) => {
 
     return (
         <div className={styles.container} key={params.id}>
-            <Link href={"/shop/"+params.id}>
+            <Link href={"/shop/product/"+params.id}>
                 <div className={styles.imageContainer}>
                     <Image 
                         className={styles.image}
@@ -53,14 +53,17 @@ const  ProductCard = (params:ProductCardParams) => {
                     </div>
                     <div className={styles.sizeContainer}>
                         {
-                            params.sizes.map(size => (
-                                <div 
-                                    key={size._id} 
-                                    className={styles.size}
-                                >
-                                    {size.title}
-                                </div>
-                            ))
+                            params.sizes.length !==0 && (
+                                params.sizes?.map(size => (
+                                        <div 
+                                            key={size._id || size as any} 
+                                            className={styles.size}
+                                        >
+                                            {size.title}
+                                        </div>
+                                    )
+                                )
+                            )
                         }
                         
                     </div>

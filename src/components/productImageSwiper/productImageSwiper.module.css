@@ -9,8 +9,9 @@
     width: 100%;
 }
 
-.swiperTumb {
+.swiperThumb {
     width: 100%;
+
 }
 
 .imageContainer {
@@ -18,9 +19,23 @@
     height: 600px;
 }
 
-.image {
-    object-fit: fill;
+.thumbImageContainer {
+    max-width: 100px;
+    aspect-ratio: 1/1;
+
+    position: relative;
+
+        
 }
 
+.image {
+    object-fit:cover;
+}
+
+@media screen and (max-width:440px) {
+    .imageContainer {
+        height: 500px;
+    }
+}
 
 

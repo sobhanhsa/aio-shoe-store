@@ -25,10 +25,7 @@ export const SignInPage = ({
         password:"",
     });
     
-    const cbRoute = useSearchParams().get("cbRoute") ?? undefined;
-
-    console.log("signinpage SignInPage cbRoute query : ",cbRoute);
-    
+    const cbRoute = useSearchParams().get("cbRoute") ?? undefined;    
 
     const onSubmit = (e?:FormEvent) => {
 

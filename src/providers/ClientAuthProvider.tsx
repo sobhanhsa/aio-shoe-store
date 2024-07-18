@@ -11,11 +11,6 @@ const ClientAuthProvider  = (
     ) => {
     
 
-    if (typeof window !== "undefined") {
-        console.log("providers ClientAuthProvider user : ",user);
-        
-    }
-
     const [auth,setAuth] = useState<{status:any,user:any}>({
         status,
         user

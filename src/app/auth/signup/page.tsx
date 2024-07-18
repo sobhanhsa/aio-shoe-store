@@ -27,10 +27,7 @@ export const SignUpPage = () => {
 
     const onSubmit = (e?:FormEvent) => {
 
-        e?.preventDefault();
-
-        console.log("auth SignInPage credentials : ",formInfo);
-        
+        e?.preventDefault();        
         
 
         useSignUp(formInfo,useAuth,router,cbRoute);

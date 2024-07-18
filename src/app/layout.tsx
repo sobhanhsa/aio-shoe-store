@@ -7,6 +7,8 @@ import ToastProvider from "@/providers/ToastProvider";
 import { ServerAuthProvider } from "@/providers/ServerAuthProvider";
 import ClientAuthProvider from "@/providers/ClientAuthProvider";
 
+import "swiper/swiper-bundle.css"
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

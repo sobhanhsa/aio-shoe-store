@@ -19,10 +19,7 @@ export const useSignUp = async(
             credentials
         ),
         }
-    );
-
-    console.log("hooks useSignup res : ",res);
-    
+    );    
     
     const body : {message:string,user:any} = await res.json();
 

@@ -24,9 +24,15 @@ export const useFilterProducts = (
             
             const finalUrl = new URL(url);    
 
+            finalUrl.searchParams.append("populate","y");
+
             // finalUrl.searchParams.append("page",(page ?? 1).toString());
-            
             Object.entries(rawQueries || {})?.forEach(([key,prop],i)=>{
+
+                if (!prop) {
+                    return
+                } 
+
                 finalUrl.searchParams.append(key,(prop).toString());
             });
 

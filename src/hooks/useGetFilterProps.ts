@@ -35,10 +35,7 @@ export const useGetFilterProps = (
             apiUrl+
             "/products/"+vForUrl+
             "/all"
-        );
-
-        console.log("hooks res : ",res);
-        
+        );        
 
         const body = await res.json();
 

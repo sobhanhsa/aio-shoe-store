@@ -112,3 +112,22 @@
     justify-content: center;
     border: 1px solid #3A3845;
 }
+
+@media screen and (max-width:440px) {
+    .product {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .swiperContainer{
+        width: 100%;
+        min-height: 500px;
+    }
+    .infoContainer{
+        width: 100%;
+        gap: 20px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+}

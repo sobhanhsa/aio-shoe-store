@@ -33,10 +33,7 @@ export const useAddToCart = async function(this:CartItemDtoType) {
                     );
                 if (r.status !== 201) reject(
                     "مشکلی رخ داد !"
-                )
-
-                console.log("code : ",r.status);
-                
+                )                
 
                 resolve("success")
             }

@@ -33,8 +33,6 @@ const  CartPage = () => {
     const {data,isLoading,mutate,error} = useSWR(
         `${process.env.NEXT_PUBLIC_API_URL}/cart`
     ,fetcher);
-
-    console.log("data : ",data);
     
         
     return (
