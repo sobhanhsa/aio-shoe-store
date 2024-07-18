@@ -20,6 +20,10 @@
     justify-content: center;
 }
 
+.link {
+    cursor: pointer;
+}
+
 .icons {
     display: flex;
     gap: 24px;

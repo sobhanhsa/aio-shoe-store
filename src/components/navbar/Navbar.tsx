@@ -16,17 +16,14 @@ const  Navbar = () => {
             LOGO
             </div>
             <div className={styles.links}>
-                <Link href={"/"}>
+                <Link className={styles.link} href={"/"}>
                     صفحه اصلی
                 </Link>
-                <Link href={"/shop"}>
+                <Link className={styles.link} href={"/shop"}>
                     فروشگاه
                 </Link>
-                <Link href={"/about"}>
+                <Link className={styles.link} href={"/about"}>
                     درباره ما
-                </Link>
-                <Link href={"/contact"}>
-                    ارتباط با ما
                 </Link>
             </div>
             <div className={styles.icons}>
