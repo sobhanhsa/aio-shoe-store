@@ -44,7 +44,9 @@ export const useFilterProducts = (
 
             const res = await fetch(
                 finalUrl.toString()
-            );
+            ,{
+                cache:"no-store"
+            });
         
             const {products,pageCount} = await res.json();
     
