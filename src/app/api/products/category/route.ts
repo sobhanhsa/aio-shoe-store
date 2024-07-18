@@ -1,17 +1,12 @@
 import { englishRegex } from "@/regexs/englishExpression";
 import { CategoryModel } from "@/utils/db/category/model";
 import { connectToDB } from "@/utils/db/utils";
+import { zCategoryDto } from "@/utils/zod/category";
 import { zodParser } from "@/utils/zod/formatError";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-const zBody = z.object({
-    parent:z.string({message:"value must be string"}).optional(),
-    title:z.string({message:"title must be string"}),
-    titleEn:z.string().regex(
-        englishRegex,{message:"titleEn must be in english"}
-    ),
-}).strict();
+const zBody = zCategoryDto;
 
 type bodyType = z.infer<typeof zBody>;
 
@@ -24,11 +19,13 @@ export const POST = async(req:NextRequest)=>{
     
         zodParser(zBody.parse,body);
 
-        body.slug = body.titleEn;
+        body.slug = body.title;
 
         if (body.parent) {
             const parentCat = await CategoryModel.findById(body.parent);
-            body.slug = parentCat.slug += "-" + body.titleEn;
+            parentCat && (
+                body.slug = parentCat.slug += "-" + body.title
+            )
             // slug example : shoe-men + -kid
         }
 

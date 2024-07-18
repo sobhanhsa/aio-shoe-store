@@ -19,8 +19,6 @@ export const GET = async(
         const shouldPopulate = req.nextUrl.searchParams.get("populate") 
             && true;
 
-        let categories :any[]|CategoryType[] = [];
-
         const NonAlphaNumRexEx = /[^A-Za-z0-9]/g;
 
         const pureS = params.s?.replace(NonAlphaNumRexEx,"")        
@@ -33,11 +31,6 @@ export const GET = async(
                     }
                 },
                 {
-                    titleEn:{
-                        $regex: pureS, $options: 'i'
-                    }
-                },
-                {
                     slug:{
                         $regex: pureS, $options: 'i'
                     }
@@ -45,13 +38,20 @@ export const GET = async(
             ]
         };
 
-        if (shouldPopulate) {
-            categories = await CategoryModel.find(query).populate("parent");
-        }else{
-            categories = await CategoryModel.find(query);
-        }      
+        // if (shouldPopulate) {
+        //     categories = await CategoryModel.find(query).populate("parent");
+        // }else{
+        //     categories = await CategoryModel.find(query);
+        // }      
 
-        categories = [...categories];
+        const temp = CategoryModel.find(query);
+
+        if (shouldPopulate) {
+            temp.populate("parent");
+        }
+
+        const categories = await temp.exec();
+
 
         return NextResponse.json({
             message:"success",
