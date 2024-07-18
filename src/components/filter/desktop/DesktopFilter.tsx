@@ -44,11 +44,8 @@ export const  DescktopFilter = ({
                 </div>
                 <hr className={styles.line} />
                 {
-                    Object.entries(filterPropsStore.props).map((e)=>{
+                    Object.entries(filterPropsStore.props).map(([key,items])=>{
 
-                        const key = e[0];
-
-                        const items = e[1];
                         
                         if (key === "colors") return (
                             <ColorFilterSelect
