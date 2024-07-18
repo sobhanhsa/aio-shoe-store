@@ -3,6 +3,7 @@
 
     padding: 10px 0;
 
+
     display: flex;
     justify-content: space-between;
 }
@@ -39,6 +40,6 @@
 
 @media screen and (max-width:440px) {
     .container {
-        justify-content: flex-start;
+        justify-content: center;
     }    
 }

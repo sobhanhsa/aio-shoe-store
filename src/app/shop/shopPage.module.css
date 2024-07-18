@@ -33,6 +33,10 @@
 @media screen and (max-width:440px) {
 
     .container {
+        overflow-x: hidden;
+
+        width: 100%;
+        /* background-color: red; */
         display: block;
     }
 
@@ -42,11 +46,13 @@
     }
 
     .products {
+        justify-content: center;
+
+        padding: 0;
 
         width: 100%;
-        display: flex;
+
         gap: 5px;
-        flex-wrap: wrap;
     }
     
 }
