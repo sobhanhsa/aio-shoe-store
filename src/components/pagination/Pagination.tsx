@@ -54,7 +54,7 @@ export const Pagination= ({
 
     if (currnetPage > pageCount) {
 
-        params.set("page",(pageCount).toString());
+        params.set("page",(pageCount || 1).toString());
 
         replace(`${path}?${params}`);
     }
