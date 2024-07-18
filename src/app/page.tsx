@@ -26,7 +26,6 @@ export default async function Home() {
       <Featured />
       
       <div className={styles.wrapper}>
-        <CategorySwiper categories={["مردانه","زنانه"]} />
         <SaleAd />
         <TopSales products={products} />
         <AboutUs />
