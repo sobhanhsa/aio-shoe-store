@@ -11,9 +11,14 @@ const fetcher = async(
     id:string
 ) => {  
     
-    const finalUrl = `${url}${id}?populate=y`;
+    const finalUrl = new URL(`${url}${id}`);
 
-    const res = await fetch(finalUrl,{
+    finalUrl.searchParams.append("populate","y");
+
+    console.log("final : ",finalUrl);
+    
+
+    const res = await fetch(finalUrl.toString(),{
         cache:"no-store"
     });
     

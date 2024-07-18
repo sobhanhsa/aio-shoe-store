@@ -4,8 +4,14 @@ import { ShopPageClient } from "./_client/ShopClient";
 const fetcher = async(
     url=process.env.NEXT_PUBLIC_API_URL+"products/product/all"
 ) => {
+    const finalUrl = new URL(`${url}`);
+
+    finalUrl.searchParams.append("populate","y");
+
+    console.log("final : ",finalUrl.toString());
+
     const res = await fetch(
-        url,{
+        finalUrl.toString(),{
             cache:"no-store"
         }
     );
