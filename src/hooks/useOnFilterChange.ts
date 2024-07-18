@@ -16,13 +16,13 @@ export const useOnFilterChange = ({
     
     const params = new URLSearchParams(searchParams);    
 
-    const page = Number(params.get("page") || 1);
+    const page = Number(params.get("page"));
     const sort = params.get("sort");
     
     useEffect(()=>{
-        onApply();
-        
-
+        if (page || sort) {
+            onApply();
+        }
     },[page,sort]);
 
 
