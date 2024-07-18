@@ -11,6 +11,7 @@ import { PriceFilterSelect } from "@/components/filterSelect/price/PriceFilterSe
 import { useFilterStore } from "@/stores/filterStore";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useOnFilterChange } from "@/hooks/useOnFilterChange";
+import CategoryFilterSelect from "@/components/filterSelect/category/CategoryFilterSelect";
 
 export const  DescktopFilter = ({
     productsFetcher,
@@ -71,6 +72,15 @@ export const  DescktopFilter = ({
                                 max={filterPropsStore.props.prices.max}
                             />
                         )
+
+                        if (key==="categories") return (
+                            <CategoryFilterSelect
+                                key={key}
+                                title="دسته بندی ها"
+                                items={items as any[]}
+                            />
+                        )
+
                     })
                 }
                 <br/>
