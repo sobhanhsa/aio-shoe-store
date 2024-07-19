@@ -70,9 +70,6 @@ const  ProductCard = (params:ProductCardParams) => {
                     <p className={styles.price}>
                         {priceRange}
                     </p>
-                    <p className={styles.tumbDesc}>
-                        {params.tumbDesc}
-                    </p>
                 </div>
             </Link> 
             <AddToCartButton 

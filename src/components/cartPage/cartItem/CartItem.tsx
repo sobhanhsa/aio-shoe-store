@@ -69,7 +69,7 @@ const  CartItem = (
                     <p 
                         className={styles.prodcutSpec}
                         style={{
-                            backgroundColor:c.spec.color.value||"black"
+                            // backgroundColor:c.spec.color.value||"black"
                         }}    
                     >
                         <IoMdColorPalette className={styles.icon} 
