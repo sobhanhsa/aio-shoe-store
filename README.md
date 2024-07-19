@@ -6,6 +6,14 @@ This project was designed and built to participate in aio-learn programming and 
 For the UI and UX, I used a free project in figma
 
 
+## Tech Stach
+- react
+- type-script
+- next/app-directory
+- mongodb
+- zod
+- zustand
+
 
 ## Demo
 
