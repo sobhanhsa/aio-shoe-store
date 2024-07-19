@@ -1,7 +1,7 @@
 
 # kafsh-khoone eccomerce
 
-This project was designed and built to participate in (aio-learn)[https://aiolearn.com/] programming and artificial intelligence competition
+This project was designed and built to participate in [aio-learn](https://aiolearn.com) programming and artificial intelligence competition
 
 For the UI and UX, I used a free project in figma
 
