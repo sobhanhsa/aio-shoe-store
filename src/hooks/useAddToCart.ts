@@ -31,6 +31,9 @@ export const useAddToCart = async function(this:CartItemDtoType) {
                 if (r.status === 401) reject(
                     "هنوز وارد حساب کاربری خود نشده اید"
                     );
+                if (r.status === 400) reject(
+                    "شما این محصول را قبلا افزوده اید"
+                    );
                 if (r.status !== 201) reject(
                     "مشکلی رخ داد !"
                 )                
